@@ -1,0 +1,213 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <title>User Profile</title>
+    <style>
+        body {
+    background: rgb(124, 207, 255)
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #6da6f0
+}
+
+.profile-button {
+    background: rgb(124, 207, 255);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #00b7ff
+}
+
+.profile-button:focus {
+    background: #6da6f0;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #6da6f0;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #6da6f0;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #6da6f0;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #6da6f0
+}
+
+.error-message {
+        color: red;
+    }
+
+canvas {
+    width: 1100px; /* Adjust as needed for the desired size */
+    height: 800px; /* Adjust as needed for the desired size */
+    margin: 20px auto;
+}
+
+</style>
+</head>
+<body>
+   <!-- <form id="profileForm" action="" >  -->
+	<form id="profileUpdate" th:action="@{/updateUserDetails}" th:object="${received}" method="post">
+    <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+    <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+    <span class="font-weight-bold">User Email</span>
+    <span class="text-black-50" th:text="${session.userEmail}"></span>
+</div>
+</div>
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Profile Settings</h4>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" name="firstname" placeholder="first name" th:value="${userData != null ? userData.firstname : ''}"></div>
+                        <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" name="lastname" th:value="${userData != null ? userData.lastname : ''}" placeholder="surname"></div>
+                    </div>
+                    <div class="row mt-3">
+                        <!-- <div class="col-md-12"><label class="labels">Mobile Number</label><input type="tel" class="form-control" placeholder="enter phone number" pattern="[0-9]{10}" value="" minlength="10" maxlength="10"></div>
+                        <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" placeholder="enter address line 1" value=""></div>
+                        <div class="col-md-12"><label class="labels">Post Code</label><input type="number" class="form-control" placeholder="enter address line 2" value=""></div> -->
+                        <div class="col-md-12"><label class="labels">City</label><input type="text" class="form-control" name="city" placeholder="enter address line"  th:value="${userData != null ? userData.city : ''}"></div>
+                        <!-- <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div> -->
+                        <!-- <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div> -->
+                        <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" name="email" placeholder="enter email id"  th:value="${userData != null ? userData.email : ''}" readonly></div>
+                        <!-- <div class="col-md-12"><label class="labels">Password</label><input type="text" class="form-control" placeholder="password" value=""></div> -->
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+    <label class="labels">Gender</label>
+    <select class="form-control" name="gender">
+        <option value="male" th:selected="${userData != null && userData.gender == 'male'}">Male</option>
+        <option value="female" th:selected="${userData != null && userData.gender == 'female'}">Female</option>
+        <option value="other" th:selected="${userData != null && userData.gender == 'other'}">Other</option>
+    </select>
+</div>
+
+                          
+                        <!-- <div class="col-md-6"><label class="labels">Gender</label><input type="text" class="form-control" placeholder="gender" value=""></div> -->
+                        <div class="col-md-6"><label class="labels">Date of Birth</label><input type="date" class="form-control" name="dateOfBirth"  th:value="${userData != null ? userData.dateOfBirth : ''}" placeholder="dob"></div>
+                    </div>
+                    <div class="mt-5 text-center">
+                      <!--  <button class="btn btn-primary profile-button" type="button" onclick="updateProfile()">Update Profile</button>
+                        <button class="btn btn-primary profile-button" type="submit">Save Profile</button>-->
+                       <!-- <button type="submit">Register</button>-->
+                    </div>
+                        
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3 py-5"><br><br>
+                    <!-- <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br> -->
+                    <div class="col-md-12">
+    <label class="labels" aria-placeholder="blood group">Blood Group</label>
+    <select class="form-control" name="bloodGroup">
+        <!-- options go here -->
+        <option value="A+" th:selected="${userData != null && userData.bloodGroup == 'A+'}">A+</option>
+        <option value="A-" th:selected="${userData != null && userData.bloodGroup == 'A-'}">A-</option>
+        <option value="B+" th:selected="${userData != null && userData.bloodGroup == 'B+'}">B+</option>
+        <option value="B-" th:selected="${userData != null && userData.bloodGroup == 'B-'}">B-</option>
+        <option value="O+" th:selected="${userData != null && userData.bloodGroup == 'O+'}">O+</option>
+        <option value="O-" th:selected="${userData != null && userData.bloodGroup == 'O-'}">O-</option>
+        <option value="AB+" th:selected="${userData != null && userData.bloodGroup == 'AB+'}">AB+</option>
+        <option value="AB-" th:selected="${userData != null && userData.bloodGroup == 'AB-'}">AB-</option>
+    </select>
+</div>
+                    <!-- <div class="col-md-12"><label class="labels">Blood Group</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br> -->
+                    
+                	
+                </div>
+                
+            </div>
+            <center> <span th:if="${userUpdate}" class="error-message" th:text="${userUpdate}"></span></center>
+             <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
+        </div>
+        </div>
+       
+</form>
+   
+</body>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+ integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+ crossorigin="anonymous"></script>
+ <script>
+    function showSuccessMessage() {
+      // Assuming your form has an id of "profileForm"
+      document.getElementById('profileForm').addEventListener('submit', function() {
+        alert('Profile saved successfully!');
+      });
+    }
+  </script> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+  crossorigin="anonymous"></script>
+ <script>
+     document.getElementById('profileForm').addEventListener('submit', function() {
+         alert('Profile saved successfully!');
+     });
+ </script>
+
+    <!-- <script>
+
+        function updateProfile() {
+            // Retrieve values from form fields
+            var firstName = document.querySelector('input[name="firstName"]').value;
+            var lastName = document.querySelector('input[name="lastName"]').value;
+            var mobileNumber = document.querySelector('input[name="mobileNumber"]').value;
+            var address = document.querySelector('input[name="address"]').value;
+            var postCode = document.querySelector('input[name="postCode"]').value;
+            var city = document.querySelector('input[name="city"]').value;
+            var state = document.querySelector('input[name="state"]').value;
+            var email = document.querySelector('input[name="email"]').value;
+            var password = document.querySelector('input[name="password"]').value;
+            var gender = document.querySelector('select[name="gender"]').value;
+            var dob = document.querySelector('input[name="dob"]').value;
+            // Add similar lines for other fields
+
+            // Update user's profile data (replace this with actual update logic)
+            // For demonstration purposes, we'll just display the updated values in an alert
+            var updatedProfile = {
+                firstName: firstName,
+                lastName: lastName,
+                mobileNumber: mobileNumber,
+                address: address,
+                postCode: postCode,
+                city: city,
+                state: state,
+                email: email,
+                password: password,
+                gender: gender,
+                dob: dob
+                // Add similar lines for other fields
+            };
+            alert('Profile updated:\n' + JSON.stringify(updatedProfile));
+
+            // Reflect the changes on the page (replace this with actual DOM manipulation)
+            // For demonstration purposes, we'll just update the user's name in the profile
+            document.querySelector('.font-weight-bold').textContent = firstName + ' ' + lastName;
+        }
+    </script>-->
+ 
+</html>
