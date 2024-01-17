@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.example.demo.entity.RegistrationDetails;
 import com.example.demo.service.RegistrationDetailsService;
@@ -48,6 +51,18 @@ public class RegistrationDetailsController {
 		model.addAttribute("otpMismatch", "Otp is not correct");
 		return "userLogin";
 
+	}
+	
+	@PostMapping("/sendOTP/{email}")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public void sendOtp(@PathVariable("email") String email, Model model) {
+		int status = userService.sendOtp(email);
+		if (status ==1) {
+			model.addAttribute("message", "User aleady existing");
+		}
+		System.out.println("request mapped " + email);
+		
 	}
 	
 	@GetMapping("/getRegistrationDetails") //1

@@ -139,24 +139,24 @@ public class AdminController {
 	
 	
 
-  @GetMapping("/getInventory")
-	public List<Inventory> getDetails() {
-	  List<Inventory> a = new ArrayList<>();
-	  	
-		a= inventoryService.getInventoryDetails();
-		int a_pos = inventoryService.getBloodCount("A+");
-		int a_neg = inventoryService.getBloodCount("A-");
-		int b_pos = inventoryService.getBloodCount("B+");
-		int b_neg = inventoryService.getBloodCount("B-");
-		int ab_pos = inventoryService.getBloodCount("AB+");
-		int ab_neg = inventoryService.getBloodCount("AB-");
-		int o_pos = inventoryService.getBloodCount("O+");
-		int o_neg = inventoryService.getBloodCount("O-");
-		System.out.println(a.get(0));
-		System.out.println("o+ :" + o_pos);
-		return a;
-		
-	}
+//  @GetMapping("/getInventory")
+//	public List<Inventory> getDetails() {
+//	  List<Inventory> a = new ArrayList<>();
+//	  	
+//		a= inventoryService.getInventoryDetails();
+//		int a_pos = inventoryService.getBloodCount("A+");
+//		int a_neg = inventoryService.getBloodCount("A-");
+//		int b_pos = inventoryService.getBloodCount("B+");
+//		int b_neg = inventoryService.getBloodCount("B-");
+//		int ab_pos = inventoryService.getBloodCount("AB+");
+//		int ab_neg = inventoryService.getBloodCount("AB-");
+//		int o_pos = inventoryService.getBloodCount("O+");
+//		int o_neg = inventoryService.getBloodCount("O-");
+//		System.out.println(a.get(0));
+//		System.out.println("o+ :" + o_pos);
+//		return a;
+//		
+//	}
 	
   
 //  @GetMapping("/getInventoryDetailsByBloodGroup/{BloodGroup}")
@@ -189,7 +189,7 @@ public class AdminController {
 	
 	
 	
-	//@GetMapping("/getInventory")
+	@GetMapping("/getInventory")
 	public String getDetails(Model model) {
 	    List<BloodGroupDetails> bloodGroupDetailsList = new ArrayList<>();
 
@@ -209,7 +209,7 @@ public class AdminController {
 
 	    model.addAttribute("bloodGroupDetailsList", bloodGroupDetailsList);
 
-	    return "bloodInventoryTable.html"; // Replace with the actual Thymeleaf template name
+	    return "bloodInventoryTable"; // Replace with the actual Thymeleaf template name
 	}
 	
 	
@@ -345,7 +345,7 @@ public class AdminController {
 	  System.out.println(detail.getEmail());
 	  service.updateUserProfile(detail);
 //		return new ResponseEntity<RegistrationDetails>(detail, HttpStatus.OK);
-	  return "redirect:/viewProfileDetail";
+	  return "redirect:/admin/viewProfileDetail";
 	}
 
   

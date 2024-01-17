@@ -11,9 +11,10 @@
     <title>Ample Admin Lite Template by WrapPixel</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/plugins/images/favicon.png">
     <!-- Custom CSS -->
-    <link href="static/css/style.min.css" rel="stylesheet">
+<link href="/static/css/style.min.css" rel="stylesheet">
+
 
     <!-- Add Bootstrap CSS -->
   <!--  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">-->
@@ -65,7 +66,7 @@
                     <ul id="sidebarnav">
                         <!-- User Profile-->
                         <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="adminHome"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/adminHome"
                                 aria-expanded="false">
                                 <i class="far fa-clock" aria-hidden="true"></i>
                                 <span class="hide-menu">Dashboard</span>
@@ -149,6 +150,18 @@
                             <table class="table text-nowrap">
                                 <thead>
                                     <!-- ... (your existing table header) ... -->
+                                    
+                                        <tr>
+                                            <th class="border-top-0">S.No</th>
+                                            <th class="border-top-0">First Name</th>
+                                            <th class="border-top-0">Last Name</th>
+                                            <th class="border-top-0">Email</th>
+                                            <th class="border-top-0">Blood Group</th>
+                                            <th class="border-top-0">No.of Units</th>
+                                            <th class="border-top-0">Date of Donation</th>
+                                            <th class="border-top-0">Action</th>
+                                        </tr>
+                                    
                                 </thead>
                                 <tbody id="donationRequestsTableBody">
                                     <!-- Use Thymeleaf to iterate over the list of donorData from the controller -->
@@ -186,16 +199,16 @@
     </div>
 
         <!-- All Jquery -->
-        <script src="static/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="/static/plugins/bower_components/jquery/dist/jquery.min.js"></script>
         <!-- Bootstrap tether Core JavaScript -->
-        <script src="static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="static/js/app-style-switcher.js"></script>
+        <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/static/js/app-style-switcher.js"></script>
         <!-- Wave Effects -->
-        <script src="static/js/waves.js"></script>
+        <script src="/static/js/waves.js"></script>
         <!-- Menu sidebar -->
-        <script src="static/js/sidebarmenu.js"></script>
+        <script src="/static/js/sidebarmenu.js"></script>
         <!-- Custom JavaScript -->
-        <script src="static/js/custom.js"></script>
+        <script src="/static/js/custom.js"></script>
 
         <!-- Include Bootstrap JS -->
        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>-->
@@ -209,7 +222,7 @@
     // ... (rest of your code)
 
     // Assuming you have an endpoint '/acceptDonationRequest/{email}' on the server to handle donation requests
-    fetch('/acceptDonationRequest/' + email, {
+    fetch('/admin/acceptDonationRequest/' + email, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json' // Add appropriate headers if needed
@@ -241,7 +254,7 @@
     // ... (rest of your code)
 
     // Assuming you have an endpoint '/acceptDonationRequest/{email}' on the server to handle donation requests
-    fetch('/rejectBloodDonationRequest/' + email, {
+    fetch('/admin/rejectBloodDonationRequest/' + email, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json' // Add appropriate headers if needed

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.configuration.CustomUserDetail;
 import com.example.demo.entity.DonorDetails;
 import com.example.demo.entity.PatientDetails;
 import com.example.demo.entity.RegistrationDetails;
@@ -38,39 +39,38 @@ public class UserController {
 	private RegistrationDetailsService registerService;
 	
 	
-	@GetMapping("/verifyUserLogin")//1
-	public String verifyLogin(@ModelAttribute("received") RegistrationDetails received, HttpSession session, Model model) {
-        int status = loginService.verifyLogin(received);
-
-        if (status == 1) {
-            // If login is successful, return the Thymeleaf template name for redirection
-            //return "redirect:/dashboard_u";
-        	  //return "userDashboard";
-        	session.setAttribute("userEmail", received.getEmail());
-        	return "redirect:/userHome";
-        } 
-        else if (status == 0) {
-        	model.addAttribute("message", "Email is invalid");
-        }
-        else {
-            // If login fails, add an error message to the model and stay on the login page
-            model.addAttribute("error", "Invalid password");
-        }
-        return "userLogin"; 
-    }
+//	@GetMapping("/verifyUserLogin")//1
+//	public String verifyLogin(@ModelAttribute("received") RegistrationDetails received, HttpSession session, Model model) {
+//        int status = loginService.verifyLogin(received);
+//
+//        if (status == 1) {
+//            // If login is successful, return the Thymeleaf template name for redirection
+//            //return "redirect:/dashboard_u";
+//        	  //return "userDashboard";
+//        	session.setAttribute("userEmail", received.getEmail());
+//        	return "redirect:/userHome";
+//        } 
+//        else if (status == 0) {
+//        	model.addAttribute("message", "Email is invalid");
+//        }
+//        else {
+//            // If login fails, add an error message to the model and stay on the login page
+//            model.addAttribute("error", "Invalid password");
+//        }
+//        return "userLogin"; 
+//    }
 	
-	@PostMapping("/sendOTP/{email}")
-	@ResponseStatus(HttpStatus.OK)
-	@ResponseBody
-	
-	public void sendOtp(@PathVariable("email") String email, Model model) {
-		int status = loginService.sendOtp(email);
-		if (status ==1) {
-			model.addAttribute("message", "User aleady existing");
-		}
-		System.out.println("request mapped " + email);
-		
-	}
+//	@PostMapping("/sendOTP/{email}")
+//	@ResponseStatus(HttpStatus.OK)
+//	@ResponseBody
+//	public void sendOtp(@PathVariable("email") String email, Model model) {
+//		int status = loginService.sendOtp(email);
+//		if (status ==1) {
+//			model.addAttribute("message", "User aleady existing");
+//		}
+//		System.out.println("request mapped " + email);
+//		
+//	}
 	
 
 	
@@ -84,6 +84,41 @@ public class UserController {
 		return "foregetPassword";
 	}
 	
+	
+	@GetMapping("/viewProfileDetail")
+	public String viewProfileDetail(HttpSession session, Model model) {
+	    // Retrieve the email from the session
+	   // String adminEmail = (String) session.getAttribute("loggedInUserEmail");
+	    CustomUserDetail user = (CustomUserDetail) session.getAttribute("user");
+	    String email = user.getEmail();
+	    
+	    System.out.println(email);
+
+	    if (email == null) {
+	        // Handle the case where the admin is not logged in
+	        return "redirect:/adminLogin";  // Redirect to the admin login page or handle appropriately
+	    }
+
+	    // Add logic to fetch user details based on the admin's email
+	    List<RegistrationDetails> userDetails = loginService.getProfileDetails(email);
+	    for(RegistrationDetails a:userDetails) {
+	    	System.out.println(a.getBloodGroup());
+	    	System.out.println(a.getCity());
+	    	System.out.println(a.getFirstname());
+	    }
+
+	    // Add the user details to the model
+	    model.addAttribute("user", userDetails);
+
+	    // Return the Thymeleaf template name
+	    return "userProfile";
+	}
+	
+	
+	
+	
+	
+	
 	@GetMapping("/viewProfileDetails/{email}")//1
 	public List<RegistrationDetails> viewProfileDetails(@PathVariable("email") String email) {
 		return loginService.getProfileDetails(email);
@@ -96,7 +131,7 @@ public class UserController {
 		 loginService.updateProfile(received);
 		 model.addAttribute("userData", received);
 		 model.addAttribute("userUpdate", "Details updated successfully");
-		 return "userProfile";
+		 return "redirect:/user/viewProfileDetail";
 	}
 	
 //	@GetMapping("/getDonationAndBloodCount/{email}")

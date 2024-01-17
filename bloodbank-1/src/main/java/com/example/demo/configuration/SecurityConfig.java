@@ -60,16 +60,19 @@ public class SecurityConfig {
 	
 	
 	
+	
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
 	    http.csrf(c -> c.disable())
 
 	        .authorizeHttpRequests(request -> request
+	        	.requestMatchers("/admin/static/css/**", "/admin/static/plugins/**", "/admin/static/js/**", "/admin/static/images/**",  "/admin/static/webjars/**").permitAll()
 	            .requestMatchers("/adminHome").hasAuthority("ADMIN")
 	            .requestMatchers("/userHome").hasAuthority("USER")
-	            .requestMatchers("/", "/userLogin", "/logout").permitAll()  // Allow public access for login and logout
-	            .requestMatchers("/viewProfileDetail").hasAuthority("ADMIN")  // Allow admins to access viewProfileDetail
+	            .requestMatchers("/", "/userLogin", "/logout", "/register", "/sendOTP/{email}").permitAll()  // Allow public access for login and logout
+	            // .requestMatchers("/viewProfileDetail").hasAuthority("ADMIN")  // Allow admins to access viewProfileDetail
+	            //.requestMatchers("/admin/static/**").permitAll()  // Allow access to static resources under /admin/static/**
 	            .anyRequest().authenticated())  // Require authentication for all other requests
 
 	        .formLogin(form -> form
@@ -83,6 +86,35 @@ public class SecurityConfig {
 
 	    return http.build();
 	}
+
+	
+	
+	
+	
+	
+//	@Bean
+//	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//
+//	    http.csrf(c -> c.disable())
+//
+//	        .authorizeHttpRequests(request -> request
+//	            .requestMatchers("/adminHome").hasAuthority("ADMIN")
+//	            .requestMatchers("/userHome").hasAuthority("USER")
+//	            .requestMatchers("/", "/userLogin", "/logout", "/register", "/sendOTP/{email}").permitAll()  // Allow public access for login and logout
+//	           // .requestMatchers("/viewProfileDetail").hasAuthority("ADMIN")  // Allow admins to access viewProfileDetail
+//	            .anyRequest().authenticated())  // Require authentication for all other requests
+//
+//	        .formLogin(form -> form
+//	            .loginPage("/userLogin").loginProcessingUrl("/userLogin")
+//	            .successHandler(new CustomSuccessHandler()).permitAll())
+//
+//	        .logout(form -> form
+//	            .invalidateHttpSession(true).clearAuthentication(true)
+//	            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//	            .logoutSuccessUrl("/userLogin?logout").permitAll());
+//
+//	    return http.build();
+//	}
 
 
 	

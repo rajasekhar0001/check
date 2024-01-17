@@ -13,7 +13,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
     <!-- Custom CSS -->
-    <link href="static/css/style.min.css" rel="stylesheet">
+    <link href="/static/css/style.min.css" rel="stylesheet">
 
     <!-- Add Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -65,7 +65,7 @@
                      <ul id="sidebarnav">
                         <!-- User Profile-->
                         <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="adminHome"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/adminHome"
                                 aria-expanded="false">
                                 <i class="far fa-clock" aria-hidden="true"></i>
                                 <span class="hide-menu">Dashboard</span>
@@ -179,16 +179,16 @@
         </div>
 
         <!-- All Jquery -->
-        <script src="static/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="/static/plugins/bower_components/jquery/dist/jquery.min.js"></script>
         <!-- Bootstrap tether Core JavaScript -->
-        <script src="static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="static/js/app-style-switcher.js"></script>
+        <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/static/js/app-style-switcher.js"></script>
         <!-- Wave Effects -->
-        <script src="static/js/waves.js"></script>
+        <script src="/static/js/waves.js"></script>
         <!-- Menu sidebar -->
-        <script src="static/js/sidebarmenu.js"></script>
+        <script src="/static/js/sidebarmenu.js"></script>
         <!-- Custom JavaScript -->
-        <script src="static/js/custom.js"></script>
+        <script src="/static/js/custom.js"></script>
 
         <!-- Include Bootstrap JS -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
@@ -201,7 +201,7 @@ function clearExpiry() {
     // ... (rest of your code)
 
     // Assuming you have an endpoint '/clearExpiry' on the server to handle clearing expiry
-    fetch('/clearExpiry', {
+    fetch('/admin/clearExpiry', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json' // Add appropriate headers if needed
