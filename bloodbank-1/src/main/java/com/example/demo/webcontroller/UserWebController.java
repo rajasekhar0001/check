@@ -139,7 +139,7 @@ public class UserWebController {
 				String email = user.getEmail();
 				System.out.println(email);
 			 //String email= (String) session.getAttribute("userEmail");
-			 	model.addAttribute("email", email);
+			 	session.setAttribute("userEmail", email);
 			 	int donationCount=userService.findBloodDonationsCount(email);
 			 	int bloodCount=userService.findBloodRequestsCount(email);
 			 	

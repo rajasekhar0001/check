@@ -13,10 +13,10 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 
 	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="static/donaterequest/css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="/static/donaterequest/css/bootstrap.min.css" />
 
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="static/donaterequest/css/donaterequest.css" />
+	<link type="text/css" rel="stylesheet" href="/static/donaterequest/css/donaterequest.css" />
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <style>
@@ -36,7 +36,7 @@
 
 #booking {
 	font-family: 'Montserrat', sans-serif;
-	background-image: url('static/donaterequest/img/donationform.jpg');
+	background-image: url('/static/donaterequest/img/donationform.jpg');
 	background-size: cover;
 	background-position: center;
 }
@@ -191,7 +191,7 @@
 					</div>
 					<div class="col-md-4 col-md-pull-7">
 						<div class="booking-form">
-							<form id="profileForm"  action="/bloodDonationRequest" th:object="${received}" method="post">
+							<form id="profileForm"  action="/user/bloodDonationRequest" th:object="${received}" method="post">
                                                   
 								 <input type="hidden" id="email" name="email" th:value="${session.userEmail}">
 								<div class="row">

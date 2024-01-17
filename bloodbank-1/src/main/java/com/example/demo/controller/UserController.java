@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -119,9 +121,15 @@ public class UserController {
 	
 	
 	
-	@GetMapping("/viewProfileDetails/{email}")//1
-	public List<RegistrationDetails> viewProfileDetails(@PathVariable("email") String email) {
-		return loginService.getProfileDetails(email);
+	@GetMapping("/viewUserProfileDetails")//1
+	public String viewProfileDetails(HttpSession session,Model model) {
+		
+		CustomUserDetail user = (CustomUserDetail) session.getAttribute("user");
+		String email = user.getEmail();
+		List<RegistrationDetails> detail =  loginService.getProfileDetails(email);
+		model.addAttribute("user", detail);
+		return "userProfile";
+		
 	}
 	
 	@PostMapping("/updateUserDetails")//1
@@ -146,11 +154,11 @@ public class UserController {
 	
 	@GetMapping("/viewBloodRequestDetails")//1
 	public String viewBloodRequestsDetails(HttpSession session,Model model) {
-		if (session.getAttribute("userEmail") == null) {
-            // Session is valid, return the Thymeleaf template name for the user home page
-            return "userLogin";
-        }
-		
+//		if (session.getAttribute("userEmail") == null) {
+//            // Session is valid, return the Thymeleaf template name for the user home page
+//            return "userLogin";
+//        }
+//		
 		String email = (String) session.getAttribute("userEmail");
 		List<PatientDetails> list = loginService.getBloodRequestsDetails(email);
 		model.addAttribute("bloodRequestHistory", list);
@@ -159,10 +167,10 @@ public class UserController {
 	
 	@GetMapping("/viewDonateRequestDetails")//1------------------------------------------------------
 	public String getDonateRequestsDerails(HttpSession session, Model model) {
-		if (session.getAttribute("userEmail") == null) {
-            // Session is valid, return the Thymeleaf template name for the user home page
-            return "userLogin";
-        }
+//		if (session.getAttribute("userEmail") == null) {
+//            // Session is valid, return the Thymeleaf template name for the user home page
+//            return "userLogin";
+//        }
 		String email = (String) session.getAttribute("userEmail");
 			List<DonorDetails> list = loginService.getDonateRequestsDetails(email);
 			
@@ -187,10 +195,10 @@ public class UserController {
 	
 	@PostMapping("/bloodDonationRequest")//1
 	public String donateRequest(@ModelAttribute("received") DonorDetails received,HttpSession session, Model model) {
-		if (session.getAttribute("userEmail") == null) {
-            // Session is valid, return the Thymeleaf template name for the user home page
-            return "userLogin";
-        } 
+//		if (session.getAttribute("userEmail") == null) {
+//            // Session is valid, return the Thymeleaf template name for the user home page
+//            return "userLogin";
+//        } 
 //		System.out.println("donation request");
 //		System.out.println(received.getDateOfDonation() + " " + received.getCity());
 		int status = loginService.donateRequest(received);
@@ -219,11 +227,11 @@ public class UserController {
 	public String bloodRequestSelf(@ModelAttribute("received")  PatientDetails received,HttpSession session, Model model) {
 		
 		
-		System.out.println("inside self");
-		if (session.getAttribute("userEmail") == null) {
-            // Session is valid, return the Thymeleaf template name for the user home page
-            return "userLogin";
-        } 
+//		System.out.println("inside self");
+//		if (session.getAttribute("userEmail") == null) {
+//            // Session is valid, return the Thymeleaf template name for the user home page
+//            return "userLogin";
+//        } 
 		System.out.println(received.getEmail()+ " " + received.getBloodGroup() + " " + received.getBloodUnits());
 //		return "userHome";
 		int status = loginService.bloodRequestSelf(received);
@@ -246,11 +254,11 @@ public class UserController {
 	@PostMapping("/bloodRequestOthers")  //1
 	public String bloodRequestOthers(@ModelAttribute("received")  PatientDetails received,HttpSession session, Model model) {
 		
-		System.out.println("inside others");
-		if (session.getAttribute("userEmail") == null) {
-            // Session is valid, return the Thymeleaf template name for the user home page
-            return "userLogin";
-        } 
+//		System.out.println("inside others");
+//		if (session.getAttribute("userEmail") == null) {
+//            // Session is valid, return the Thymeleaf template name for the user home page
+//            return "userLogin";
+//        } 
 		
 		System.out.println("mmmm : " + received.getEmail());
 		System.out.println(received.getEmail()+ " " + received.getBloodGroup() + " " + received.getBloodUnits());

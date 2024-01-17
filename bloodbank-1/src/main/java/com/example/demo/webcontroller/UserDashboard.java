@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.RegistrationDetails;
 import com.example.demo.service.DonorDetailsService;
@@ -15,6 +16,7 @@ import com.example.demo.service.UserService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
+@RequestMapping("/user") 
 public class UserDashboard {
 
     @GetMapping("/dashboard")
@@ -63,15 +65,15 @@ public class UserDashboard {
     
     @GetMapping("/userProfile") 
 	public String userProfile(HttpSession session, Model model) {
-    	if (session.getAttribute("userEmail") == null) {
-            // Session is valid, return the Thymeleaf template name for the user home page
-            return "userLogin";
-        } 
-    	List<RegistrationDetails> saved = service.getRegistrationDetailsByEmail((String) session.getAttribute("userEmail"));
-    	for(RegistrationDetails detail:saved) {
-    		 System.out.println("Blood Group: " + detail.getBloodGroup());
-    		model.addAttribute("userData", detail);
-    	}
+//    	if (session.getAttribute("userEmail") == null) {
+//            // Session is valid, return the Thymeleaf template name for the user home page
+//            return "userLogin";
+//        } 
+//    	List<RegistrationDetails> saved = service.getRegistrationDetailsByEmail((String) session.getAttribute("userEmail"));
+//    	for(RegistrationDetails detail:saved) {
+//    		 System.out.println("Blood Group: " + detail.getBloodGroup());
+//    		model.addAttribute("userData", detail);
+//    	}
 		return "userProfile";
 	}
 
