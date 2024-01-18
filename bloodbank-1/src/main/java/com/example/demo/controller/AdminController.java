@@ -316,7 +316,7 @@ public class AdminController {
 	  List<Inventory> details = new ArrayList<>();
 	  
 		details= inventoryService.getInventoryDetails();
-		System.out.println(details.get(0));
+//		System.out.println(details.get(0));
 		model.addAttribute("blood", details);
 		
 		return "bloodExpiry";
