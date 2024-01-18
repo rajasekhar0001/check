@@ -393,6 +393,20 @@ public class UserService {
 			
 		}
 
+	public boolean validateUserDetails(DonorDetails detail) {
+		
+		List<RegistrationDetails> saved = service.getRegistrationDetailsByEmail(detail.getEmail());
+		RegistrationDetails received = saved.get(0);
+		System.out.println(received);
+		if(received.getFirstname() != null && received.getLastname()!= null && received.getBloodGroup()!= null &&
+				received.getCity() != null && received.getDateOfBirth()!= null  &&
+				received.getGender()!= null )
+			return false;
+			
+		
+		return true;
+	}
+
 
 
 //	public int getBloodRequestsCount(String email) {

@@ -139,7 +139,9 @@ public class UserController {
 		 loginService.updateProfile(received);
 		 model.addAttribute("userData", received);
 		 model.addAttribute("userUpdate", "Details updated successfully");
-		 return "redirect:/user/viewProfileDetail";
+		 List<RegistrationDetails> detail =  loginService.getProfileDetails(received.getEmail());
+			model.addAttribute("user", detail);
+		 return "userProfile";
 	}
 	
 //	@GetMapping("/getDonationAndBloodCount/{email}")
@@ -201,6 +203,12 @@ public class UserController {
 //        } 
 //		System.out.println("donation request");
 //		System.out.println(received.getDateOfDonation() + " " + received.getCity());
+		if (loginService.validateUserDetails(received))
+		{
+			model.addAttribute("donateMessage", "Fill profile details before going for donation");
+			return "donationRequest";
+		}
+		
 		int status = loginService.donateRequest(received);
 		switch(status) {
 		case 0:model.addAttribute("donateMessage", "Email not found");
