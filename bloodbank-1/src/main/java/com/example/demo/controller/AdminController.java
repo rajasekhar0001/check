@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.configuration.CustomUserDetail;
+import com.example.demo.emailService.SendEmailService;
 import com.example.demo.entity.BloodGroupDetails;
 import com.example.demo.entity.DonorDetails;
 import com.example.demo.entity.Inventory;
@@ -60,6 +61,12 @@ public class AdminController {
 	
 	@Autowired
 	private RegistrationDetailsService registrationDetailsService;
+	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private SendEmailService emailService;
 
 	
 //	@GetMapping("/verifyAdminLogin")
@@ -130,6 +137,8 @@ public class AdminController {
 
 	    // Add the user details to the model
 	    model.addAttribute("user", userDetails);
+	    model.addAttribute("adminUpdate", "admin detail updated");
+	    
 
 	    // Return the Thymeleaf template name
 	    return "adminProfile";
@@ -344,6 +353,7 @@ public class AdminController {
 	{
 	  System.out.println(detail.getEmail());
 	  service.updateUserProfile(detail);
+	  //model.addAttribute("adminUpdate", "admin detail updated");
 //		return new ResponseEntity<RegistrationDetails>(detail, HttpStatus.OK);
 	  return "redirect:/admin/viewProfileDetail";
 	}
@@ -412,6 +422,7 @@ public class AdminController {
 //  	    }
 
   	    System.out.println("Request mapped for email: " + email);
+  	  emailService.sendEmail(email,"HemoHarbor ", "you Blood Donation Request is Accepted ");
   	}
 
 	
@@ -432,6 +443,7 @@ public class AdminController {
 		
 		
 		   System.out.println("Request mapped for email: " + email);
+		   emailService.sendEmail(email,"HemoHarbor ", "you Blood Request is Accepted ");
 	}
 	
 
@@ -446,6 +458,7 @@ public class AdminController {
 		 
 		 
 		 System.out.println("Request mapped for email: " + email);
+		 emailService.sendEmail(email,"HemoHarbor ", "you Blood Donation Request is Rejected ");
 		
 	}
 	
@@ -458,6 +471,7 @@ public class AdminController {
 		
 		
 		 System.out.println("Request mapped for email: " + email);
+		 emailService.sendEmail(email,"HemoHarbor ", "you Blood Request is Rejected ");
 		
 	}
 	

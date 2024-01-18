@@ -109,20 +109,34 @@ public class InventoryService {
     }
 
     static long findDifference(String donationDate, String todayDate) {
-        long daysDifference = 0;
-        
+    	long daysDifference = 0;
+
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date date1 = sdf.parse(donationDate);
             Date date2 = sdf.parse(todayDate);
+
             long timeDifference = date2.getTime() - date1.getTime();
-            daysDifference = (timeDifference / (1000 * 60 * 60 * 24)) % 365;
+            daysDifference = timeDifference / (1000 * 60 * 60 * 24);
+
+            // Check for year difference
+            int year1 = Integer.parseInt(new SimpleDateFormat("yyyy").format(date1));
+            int year2 = Integer.parseInt(new SimpleDateFormat("yyyy").format(date2));
+
+            if (year2 > year1) {
+                int daysInYear = isLeapYear(year1) ? 366 : 365; // Adjust for leap year
+                daysDifference += (year2 - year1) * daysInYear;
+            }
+
             System.out.println("The Blood sample is " + daysDifference + " days older.");
         } catch (Exception e) {
             System.out.print(e);
         }
-        
+
         return daysDifference;
+    }
+    static boolean isLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
     }
 
 //	public List<Inventory> checkForOldBloodSamples(List<Inventory> donors) {

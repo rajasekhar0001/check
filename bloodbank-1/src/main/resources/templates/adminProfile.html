@@ -61,9 +61,47 @@ canvas {
     width: 1100px; /* Adjust as needed for the desired size */
     height: 800px; /* Adjust as needed for the desired size */
     margin: 20px auto;
+    
 }
 
+
+
+
 </style>
+
+<style>
+    .error-message {
+        display: none;
+        background-color: #007bff; /* Blue color */
+        color: #fff; /* Text color */
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        text-align: center;
+        position: relative;
+    }
+
+    .error-message:before {
+        content: '\f06a'; /* FontAwesome icon for close (X) */
+        font-family: 'Font Awesome 5 Free'; /* Use Font Awesome for icons */
+        font-weight: 900;
+        font-size: 18px;
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
+    .error-message:hover:before {
+        color: #ccc; /* Change icon color on hover */
+    }
+</style>
+
+
+
+
 </head>
 <body>
      <form id="profileUpdate" action="/admin/updateDetails" th:object="${detail}" method="post"> 
@@ -154,10 +192,58 @@ canvas {
                     <div class="col-md-6"><label class="labels">Date of Birth</label><input type="date" class="form-control" value="" name="dateOfBirth" placeholder="dob"></div>
 
                     </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+<!--                    <div class="row mt-3">
+    <div class="col-md-12">
+        <div class="error-message" id="errorMessage">
+            <span class="error-attribute" th:text="${adminUpdate}"></span>
+        </div>
+    </div>
+</div>
+
+<div class="mt-5 text-center">
+     Use a single function that calls both updateProfile and saveProfile 
+    <button class="btn btn-primary profile-button" type="button" onclick="saveAndUpdateProfile()">Save Profile</button>
+</div>
+        -->            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <div class="row mt-3">
+    <div class="col-md-12">
+                    
+                    <!-- <span class="error-attribute" th:if="${adminUpdate != null and adminUpdate != ''}" th:text="${adminUpdate}"></span>-->
+                     
+                     <div class="error-message" id="errorMessage">
+            <span class="error-attribute" th:text="${adminUpdate}"></span>
+        </div>
+
+</div>
+    </div>
+
+                     
                     <div class="mt-5 text-center">
                        <!-- <button class="btn btn-primary profile-button" type="button" onclick="updateProfile()">Update Profile</button>-->
-                        <button class="btn btn-primary profile-button" type="submit" onclick="showSuccessMessage()">Save Profile</button>
+                        <button class="btn btn-primary profile-button" type="submit" onclick="saveAndUpdateProfile()">Save Profile</button>
                     </div>
+                    
+                    
+                    
                         
                 </div>
             </div>
@@ -230,7 +316,7 @@ canvas {
          alert('Profile saved successfully!');
      });
  </script>-->
-<script>
+<!--<script>
     function updateProfile() {
         // Retrieve values from form fields
         var firstName = document.querySelector('input[name="firstName"]').value;
@@ -272,6 +358,87 @@ canvas {
 
         // Submit the form
         document.getElementById('profileUpdate').submit();
+    }
+</script>
+
+<script>
+    function saveProfile() {
+        // Add your logic to handle the save profile functionality
+
+        // For demonstration purposes, I'll toggle the error message visibility
+        var errorMessage = document.getElementById('errorMessage');
+        errorMessage.style.display = 'block'; // Show the error message
+    }
+</script>-->
+
+
+<script>
+    function updateProfile() {
+        // Your updateProfile logic
+         function updateProfile() {
+        // Retrieve values from form fields
+        var firstName = document.querySelector('input[name="firstName"]').value;
+        var lastName = document.querySelector('input[name="lastName"]').value;
+        var mobileNumber = document.querySelector('input[name="mobileNumber"]').value;
+        var address = document.querySelector('input[name="address"]').value;
+        var postCode = document.querySelector('input[name="postCode"]').value;
+        var city = document.querySelector('input[name="city"]').value;
+        var state = document.querySelector('input[name="state"]').value;
+        var email = document.querySelector('input[name="email"]').value;
+        var password = document.querySelector('input[name="password"]').value;
+        var gender = document.querySelector('select[name="gender"]').value;
+        var dob = document.querySelector('input[name="dob"]').value;
+        // Add similar lines for other fields
+
+        // Create an object with the updated values
+        var updatedProfile = {
+            firstName: firstName,
+            lastName: lastName,
+            mobileNumber: mobileNumber,
+            address: address,
+            postCode: postCode,
+            city: city,
+            state: state,
+            email: email,
+            password: password,
+            gender: gender,
+            dob: dob
+            // Add similar lines for other fields
+        };
+
+        // Populate the form fields with the updated values
+        document.querySelector('input[name="firstName"]').value = updatedProfile.firstName;
+        document.querySelector('input[name="lastName"]').value = updatedProfile.lastName;
+        // Add similar lines for other fields
+
+        // Update the Thymeleaf object with the updated values
+        document.getElementById('profileUpdate').thObject = updatedProfile;
+
+        // Submit the form
+        document.getElementById('profileUpdate').submit();
+    }
+        console.log('updateProfile function called');
+    }
+
+    function saveProfile(event) {
+        // Assuming that adminUpdate is set on the server side
+        var adminUpdateMessage = document.querySelector('.error-attribute').innerText;
+
+        // Display the adminUpdate message
+        var errorMessage = document.getElementById('errorMessage');
+        errorMessage.style.display = 'block';
+        errorMessage.querySelector('.error-attribute').innerText = adminUpdateMessage;
+
+        // Prevent the default form submission
+        event.preventDefault();
+
+        console.log('saveProfile function called');
+    }
+
+    function saveAndUpdateProfile() {
+        // Call both updateProfile and saveProfile
+        updateProfile();
+        saveProfile(event);
     }
 </script>
 
