@@ -1,38 +1,4 @@
-<!--<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Home Page</title>
-</head>
-<body>
-    <h1>Welcome to Our Website!</h1>
 
-     User Login Section 
-    <div>
-        <h2>User Login</h2>
-        <a th:href="@{/userLogin}">Go to User Login</a>
-    </div>
-
-     Admin Login Section 
-    <div>
-        <h2>Admin Login</h2>
-        <a th:href="@{/userRegistration}">Go to Admin Login</a>
-    </div>
-
-     Signup Section 
-    <div>
-        <h2>Signup</h2>
-        <a th:href="@{/userRegistration}">Go to Signup</a>
-    </div>
-
-     Contact Us Section 
-    <div>
-        <h2>Contact Us</h2>
-        <p>If you have any questions, please feel free to contact us:</p>
-        <p>Email: info@example.com</p>
-        <p>Phone: 123-456-7890</p>
-    </div>
-</body>
-</html>-->
 
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
@@ -60,6 +26,19 @@
     <!-- ===============================================-->
     <!--<link href="assets/css/theme.css" rel="stylesheet" />-->
     <link href="/static/css/assets/css/theme.css" rel="stylesheet" />
+    
+    
+     <style>
+        /* Add some basic styles for the login box */
+        .login-box {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* You can customize the styles further based on your design */
+    </style>
 
   </head>
 
@@ -82,8 +61,8 @@
             <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
               <li class="nav-item px-2"><a class="nav-link" aria-current="page" href="#about">About Us</a></li>
               <li class="nav-item px-2"><a class="nav-link" href="#bloodproducts">Blood Products</a></li>
-              <li class="nav-item px-2"><a class="nav-link" href="/userLogin">User Login</a></li>
-              <li class="nav-item px-2"><a class="nav-link" href="/adminLogin">Admin Login </a></li>
+              <li class="nav-item px-2"><a class="nav-link" href="/userLogin">Login</a></li>
+             <!-- <li class="nav-item px-2"><a class="nav-link" href="/adminLogin">Admin Login </a></li>-->
               <li class="nav-item px-2"><a class="nav-link" href="#contact">Contact</a></li>
             </ul>
           </div>
