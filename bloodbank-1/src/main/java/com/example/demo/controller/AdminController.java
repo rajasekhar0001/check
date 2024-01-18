@@ -362,7 +362,7 @@ public class AdminController {
   	public String viewDonationRequests(Model model) {
   		List<DonorDetails> donorData = new ArrayList<>();
   		donorData = service.getDonationRequests();
-  		System.out.println(donorData.get(0));
+//  		System.out.println(donorData.get(0));
   		//System.out.println(donorData.get(1));
   		model.addAttribute("donor", donorData);
   		return "bloodDonationRequests";
@@ -373,7 +373,7 @@ public class AdminController {
   	public String viewBloodRequestHistory(Model model) {
   		List<PatientDetails> requestData= new ArrayList<>();
   		requestData = patientDetailsService.getBloodRequestsHistory();
-  		System.out.println(requestData.get(0));
+//  		System.out.println(requestData.get(0));
   		model.addAttribute("recieve", requestData);
   		return "bloodRequestsViews";
   	}
@@ -382,7 +382,7 @@ public class AdminController {
   	public String viewBloodRequest(Model model) {
   		List<PatientDetails> requestData = new ArrayList<>();
   		requestData= service.getBloodRequest();
-  		System.out.println(requestData.get(0));
+//  		System.out.println(requestData.get(0));
   		model.addAttribute("recieve", requestData);
   		return "bloodRequestAdmin";
   	}
