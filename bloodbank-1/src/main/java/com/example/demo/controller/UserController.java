@@ -76,15 +76,15 @@ public class UserController {
 	
 
 	
-	@PostMapping("/resetPassword")
-//	public String resetPassword(@PathVariable("email") String email,@PathVariable("otp") int otp,@PathVariable("password") String password, Model model) {
-	public String resetPassword(@ModelAttribute("detail") RegistrationDetails detail, Model model) {
-		
-		int status = loginService.resetPassword(detail.getEmail(), detail.getOtp(),detail.getPassword(), model);
-		if (status==1) 
-			return "redirect:/userLogin";
-		return "foregetPassword";
-	}
+//	@PostMapping("/resetPassword")
+////	public String resetPassword(@PathVariable("email") String email,@PathVariable("otp") int otp,@PathVariable("password") String password, Model model) {
+//	public String resetPassword(@ModelAttribute("detail") RegistrationDetails detail, Model model) {
+//		
+//		int status = loginService.resetPassword(detail.getEmail(), detail.getOtp(),detail.getPassword(), model);
+//		if (status==1) 
+//			return "redirect:/userLogin";
+//		return "foregetPassword";
+//	}
 	
 	
 	@GetMapping("/viewProfileDetail")
