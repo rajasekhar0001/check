@@ -319,24 +319,25 @@ footer a {
                 <button>Sign Up</button>
             </form> -->
              <form  action="/register" th:object="${detail}" method="post">
+				 <h1>Create Account</h1>
        
 
-        	<label for="email">Email:</label>
-        	<input type="email" id="email" name="email" required>
+<!--        	<label for="email">Email:</label>
+-->        	<input type="email" id="email" name="email" placeholder="Email" required>
         
 
         	<!-- Button to send OTP -->
         	<button type="button" onclick="sendOTP()">Send OTP</button>
       
 
-        	<label for="otp">OTP:</label>
-        	<input type="text" id="otp" name="otp" required>
+        	<!--<label for="otp">OTP:</label>-->
+        	<input type="text" id="otp" name="otp" placeholder="Enter your OPT" required>
         
-   	<label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+<!--   	<label for="password">Password:</label>
+-->        <input type="password" id="password" name="password" placeholder="Password" required>
 
-        <label for="confirmPassword">Confirm Password:</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" required onblur="validatePasswords()">
+<!--        <label for="confirmPassword">Confirm Password:</label>
+-->        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required onblur="validatePasswords()">
         
 
         <!-- Button to submit the registration form -->
@@ -356,16 +357,17 @@ footer a {
 			</form>-->
 			<form 
          th:action="@{/userLogin}"method="post">
+         <h1>Sign in</h1>
          
-            <div class="form-group">
-                <label for="username">Email</label>
-                <input  type="text" id="username" name="username" placeholder="email" required>
-            </div>
+           
+<!--                <label for="username">Email</label>
+-->                <input  type="text" id="username" name="username" placeholder="Email" required>
+           
             
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input  type="password" id="password" name="password" placeholder="password" required>
-            </div>
+           
+<!--                <label for="password">Password</label>
+-->                <input  type="password" id="password" name="password" placeholder="Password" required>
+           
             <!--<input type="submit" value="Login">-->
             <button type="submit">Sign In</button>
              <a href="forgetPassword">Forgot your password?</a> 
