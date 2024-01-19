@@ -41,6 +41,7 @@ public class UserController {
 	private RegistrationDetailsService registerService;
 	
 	
+	
 //	@GetMapping("/verifyUserLogin")//1
 //	public String verifyLogin(@ModelAttribute("received") RegistrationDetails received, HttpSession session, Model model) {
 //        int status = loginService.verifyLogin(received);
@@ -213,7 +214,7 @@ public class UserController {
 		switch(status) {
 		case 0:model.addAttribute("donateMessage", "Email not found");
 		return "donationRequest";
-		case 1:  model.addAttribute("donateMessage", "You are eligible to donate, request needs to be accepted by admin");
+		case 1:  //model.addAttribute("donateMessage", "You are eligible to donate, request needs to be accepted by admin");
 		return "userHome";
 		case 2:model.addAttribute("donateMessage", "you are not allowed to Donate Blood, age should be minimum 18 years");
 		return "donationRequest";
@@ -296,6 +297,7 @@ public class UserController {
 			model.addAttribute("bloodRequestStatus", "There is no enough blood in the Inventory");
 		else {
 			model.addAttribute("bloodRequestStatus", "Blood is available, admin has to accept your request");
+			
 			return "userHome";
 		}
 		return "bloodRequest";
