@@ -84,11 +84,11 @@
     <thead>
         <tr>
             <th>Serial No</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
+            <!-- <th>First Name</th>
+            <th>Last Name</th> -->
+          <!--   <th>Email</th>
             <th>Date of Birth</th>
-            <th>City</th>
+            <th>City</th> -->
             <th>Date of Donation</th>
             <th>Blood Group</th>
             <th>No of Units</th>
@@ -101,11 +101,11 @@
         <th:block th:each="donation, iterStat : ${donationRequestHistory}">
             <tr>
                 <td th:text="${iterStat.count}"></td>
-                <td th:text="${donation.firstname}"></td>
-                <td th:text="${donation.lastname}"></td>
-                <td th:text="${donation.email}"></td>
-                <td th:text="${donation.dateOfBirth}"></td>
-                <td th:text="${donation.city}"></td>
+              <!--   <td th:text="${donation.firstname}"></td>
+                <td th:text="${donation.lastname}"></td> -->
+<!--                 <td th:text="${donation.email}"></td>
+                <td th:text="${donation.dateOfBirth}"></td> -->
+<!--                 <td th:text="${donation.city}"></td> -->
                 <td th:text="${donation.dateOfDonation}"></td>
                 <td th:text="${donation.bloodGroup}"></td>
                 <td th:text="${donation.units}"></td>
@@ -121,11 +121,11 @@
     <tfoot>
         <tr>
             <th>Serial No</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
+           <!--  <th>First Name</th>
+            <th>Last Name</th> -->
+<!--             <th>Email</th>
             <th>Date of Birth</th>
-            <th>City</th>
+            <th>City</th> -->
             <th>Date of Donation</th>
             <th>Blood Group</th>
             <th>No of Units</th>
