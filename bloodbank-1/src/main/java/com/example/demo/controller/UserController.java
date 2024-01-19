@@ -217,7 +217,7 @@ public class UserController {
 		return "userHome";
 		case 2:model.addAttribute("donateMessage", "you are not allowed to Donate Blood, age should be minimum 18 years");
 		return "donationRequest";
-		case 3:model.addAttribute("donateMessage","Older people are not allowe to donate");
+		case 3:model.addAttribute("donateMessage","Older people are not allowed to donate age should be less than 65");
 		return "donationRequest";
 		case 4:
 			model.addAttribute("donateMessage", "You can't make a request again without the last request getting verified");
@@ -240,6 +240,13 @@ public class UserController {
 //            // Session is valid, return the Thymeleaf template name for the user home page
 //            return "userLogin";
 //        } 
+		
+		if (loginService.validateUserDetailsForPatient(received))
+		{
+			model.addAttribute("bloodRequestStatus", "Fill profile details before requesting blood");
+			return "bloodRequest";
+		}
+		
 		System.out.println(received.getEmail()+ " " + received.getBloodGroup() + " " + received.getBloodUnits());
 //		return "userHome";
 		int status = loginService.bloodRequestSelf(received);
@@ -267,6 +274,13 @@ public class UserController {
 //            // Session is valid, return the Thymeleaf template name for the user home page
 //            return "userLogin";
 //        } 
+		
+		if (loginService.validateUserDetailsForPatient(received))
+		{
+			model.addAttribute("bloodRequestStatus", "Fill profile details before requesting blood");
+			return "bloodRequest";
+		}
+		
 		
 		System.out.println("mmmm : " + received.getEmail());
 		System.out.println(received.getEmail()+ " " + received.getBloodGroup() + " " + received.getBloodUnits());
