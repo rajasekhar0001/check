@@ -145,7 +145,7 @@ canvas {
               
        <div class="col-md-6" th:each="userDetail : ${user}">
     <label class="labels">Gender</label>
-    <select class="form-control" name="gender">
+    <select class="form-control" name="gender" >
         <option value="" th:selected="${userDetail.gender == null or userDetail.gender == ''}">Select Gender</option>
         <option value="male" th:selected="${userDetail.gender == 'male'}">Male</option>
         <option value="female" th:selected="${userDetail.gender == 'female'}">Female</option>
@@ -155,7 +155,7 @@ canvas {
 
                           
                        
-                    <div class="col-md-6"><label class="labels">Date of Birth</label><input type="date" class="form-control" value="" name="dateOfBirth" placeholder="dob"></div>
+                    <div class="col-md-6"><label class="labels">Date of Birth</label><input type="date" class="form-control" value="" name="dateOfBirth" placeholder="dob" th:value="${user != null and user.size() > 0 ? user[0].dateOfBirth : ''}" required></div>
 
 			<br>
                    <div class="col-md-12" th:each="userDetail : ${user}">
