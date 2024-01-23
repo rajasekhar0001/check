@@ -173,13 +173,18 @@
                                             <th class="border-top-0">Blood Group</th>
                                             <th class="border-top-0">No.of Units</th>
                                             <th class="border-top-0">Date of Donation</th>
+                                            <th class="border-top-0">Status</th>
                                             <th class="border-top-0">Action</th>
                                         </tr>
                                     
                                 </thead>
                                 <tbody id="donationRequestsTableBody">
                                     <!-- Use Thymeleaf to iterate over the list of donorData from the controller -->
+<<<<<<< HEAD
 
+=======
+<!-- 
+>>>>>>> 73b8b6bb75774d69bcc666b704bbbeec8a7d5b2b
                                     <tr th:each="donor, rowStat : ${donor}">
                                         <td th:text="${rowStat.index + 1}"></td>
                                         <td th:text="${donor.firstname}"></td>
@@ -187,7 +192,7 @@
                                         <td th:text="${donor.email}"></td>
                                         <td th:text="${donor.bloodGroup}"></td>
                                         <td th:text="${donor.units}"></td>
-                                        <td th:text="${donor.dateOfDonation}"></td>         
+                                        <td th:text="${donor.dateOfDonation}"></td>    -->      
                                         <!-- ... (existing HTML code) ... -->
 										<td class="action-cell">
 
@@ -206,7 +211,10 @@
         <span class="status-label" style="display:none;"></span>
     </td>-->
     <td class="action-cell">
+<<<<<<< HEAD
 
+=======
+>>>>>>> 73b8b6bb75774d69bcc666b704bbbeec8a7d5b2b
                 <!--<button class="btn btn-success btn-accept"  th:data-onclick="'accept(\'' + ${donor.email} + '\')'">Accept</button>-->
                 <button class="btn btn-success btn-accept" th:attr="onclick='accept(\'' + ${donor.email} + '\')'">Accept</button>
                 <button class="btn btn-danger btn-reject"th:attr="onclick='reject(\'' + ${donor.email} + '\')'">Reject</button>
@@ -216,10 +224,15 @@
                
               
                                     </tr>
+<<<<<<< HEAD
 
 </tr>
                                     <!-- ... (your existing table body) ... -->
 
+=======
+</tr>
+ 
+>>>>>>> 73b8b6bb75774d69bcc666b704bbbeec8a7d5b2b
                                 </tbody>
                             </table>
                         </div>
@@ -391,8 +404,11 @@ $(document).ready(function () {
 });
 </script>
     
+<<<<<<< HEAD
     
 
+=======
+>>>>>>> 73b8b6bb75774d69bcc666b704bbbeec8a7d5b2b
     </body>
 
     </html>
