@@ -174,12 +174,18 @@
                                         <td th:text="${recieve.dateOfBlood }"></td>
                                         <td th:text="${recieve.reason}"></td>
                                         <!-- ... (existing HTML code) ... -->
-<td class="action-cell">
-                <!--<button class="btn btn-success btn-accept"  th:data-onclick="'accept(\'' + ${donor.email} + '\')'">Accept</button>-->
+<!--<td class="action-cell">
                 <button class="btn btn-success btn-accept" th:attr="onclick='accept(\'' + ${recieve.email} + '\')'">Accept</button>
-
-
                 <button class="btn btn-danger btn-reject"th:attr="onclick='reject(\'' + ${recieve.email} + '\')'">Reject</button>
+               </td>-->
+               
+               
+               
+                <td class="action-cell">
+               
+                <button class="btn btn-success btn-accept" th:attr="onclick='accept(\'' + ${recieve.email} + '\')'">Accept</button>
+                <button class="btn btn-danger btn-reject"th:attr="onclick='reject(\'' + ${recieve.email} + '\')'">Reject</button>
+                 <span class="status-label" style="display:none;"></span>
                </td>
                
               
@@ -283,7 +289,7 @@
 
 
 
-        <script>
+<!--        <script>
         // Function to add a new row to the table
         function addTableRow(firstName, lastName, email, bloodGroup, units,date,reason) {
             var newRow = '<tr>' +
@@ -327,7 +333,24 @@
         $(document).ready(function () {
             addTableRow('John', 'Doe', 'john.doe@example.com', 'A+', '2','11-1-2023','Urgent Requirement of Blood');
         });
-    </script>
+    </script>-->
+    
+     <script>
+$(document).ready(function () {
+    // Add click event handlers for dynamically generated rows
+    $('.btn-accept').on('click', function () {
+        var $row = $(this).closest('tr');
+        $row.find('.btn-accept, .btn-reject').hide();
+        $row.find('.status-label').text('Accepted').addClass('text-success').show();
+    });
+
+    $('.btn-reject').on('click', function () {
+        var $row = $(this).closest('tr');
+        $row.find('.btn-accept, .btn-reject').hide();
+        $row.find('.status-label').text('Rejected').addClass('text-danger').show();
+    });
+});
+</script>
     </body>
 
     </html>
