@@ -221,5 +221,8 @@ public class UserWebController {
 //		return "acceptDonationRequest";
 //	}
 	
-	
+	@GetMapping("/userDetails")
+	public String userDetail() {
+		return "userDetails";
+	}
 }
