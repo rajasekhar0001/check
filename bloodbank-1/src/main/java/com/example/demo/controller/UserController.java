@@ -261,7 +261,7 @@ public class UserController {
 			model.addAttribute("bloodRequestStatus", "There is no enough blood in the Inventory");
 		else {
 			model.addAttribute("bloodRequestStatus", "Blood is available, admin has to accept your request");
-			return "userHome";
+			return "bloodRequest";
 		}
 		return "bloodRequest";
 	}
@@ -298,7 +298,7 @@ public class UserController {
 		else {
 			model.addAttribute("bloodRequestStatus", "Blood is available, admin has to accept your request");
 			
-			return "userHome";
+			return "bloodRequest";
 		}
 		return "bloodRequest";
 	}
