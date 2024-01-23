@@ -165,29 +165,27 @@
                                 </thead>
                                 <tbody id="donationRequestsTableBody">
                                     <!-- Use Thymeleaf to iterate over the list of donorData from the controller -->
-                                    <tr th:each="donor, rowStat : ${donor}">
-                                        <td th:text="${rowStat.index + 1}"></td>
-                                        <td th:text="${donor.firstname}"></td>
-                                        <td th:text="${donor.lastname}"></td>
-                                        <td th:text="${donor.email}"></td>
-                                        <td th:text="${donor.bloodGroup}"></td>
-                                        <td th:text="${donor.units}"></td>
-                                        <td th:text="${donor.dateOfDonation}"></td>         
-                                        <!-- ... (existing HTML code) ... -->
-<td class="action-cell">
+                                   <tr th:each="donor, rowStat : ${donor}">
+    <td th:text="${rowStat.index + 1}"></td>
+    <td th:text="${donor.firstname}"></td>
+    <td th:text="${donor.lastname}"></td>
+    <td th:text="${donor.email}"></td>
+    <td th:text="${donor.bloodGroup}"></td>
+    <td th:text="${donor.units}"></td>
+    <td th:text="${donor.dateOfDonation}"></td>
+    <td th:text="${donor.status}"></td> <!-- Include the status for each donor -->
+    <!--<td class="action-cell">
+        <button class="btn btn-success btn-accept">Accept</button>
+        <button class="btn btn-danger btn-reject">Reject</button>
+        <span class="status-label" style="display:none;"></span>
+    </td>-->
+    <td class="action-cell">
                 <!--<button class="btn btn-success btn-accept"  th:data-onclick="'accept(\'' + ${donor.email} + '\')'">Accept</button>-->
                 <button class="btn btn-success btn-accept" th:attr="onclick='accept(\'' + ${donor.email} + '\')'">Accept</button>
-
-
                 <button class="btn btn-danger btn-reject"th:attr="onclick='reject(\'' + ${donor.email} + '\')'">Reject</button>
+                 <span class="status-label" style="display:none;"></span>
                </td>
-               
-              
-
-
-<!-- ... (existing HTML code) ... -->
-
-                                    </tr>
+</tr>
                                     <!-- ... (your existing table body) ... -->
                                 </tbody>
                             </table>
@@ -278,55 +276,76 @@
 
 
 
-
+<!--
         <script>
         // Function to add a new row to the table
         function acceptDonationRequest(button) {
     var email = button.getAttribute('data-email');
     // Perform your logic with the email...
 }
-        function addTableRow(firstName, lastName, email, bloodGroup, units, date) {
-            var newRow = '<tr>' +
-                '<td>' + ($('#donationRequestsTableBody tr').length + 1) + '</td>' +
-                '<td>' + firstName + '</td>' +
-                '<td>' + lastName + '</td>' +
-                '<td>' + email + '</td>' +
-                '<td>' + bloodGroup + '</td>' +
-                '<td>' + units + '</td>' +
-                 '<td>' + date + '</td>' +
-                '<td class="action-cell">' +
-                '<button class="btn btn-success btn-accept">Accept</button>' +
-                '<button class="btn btn-danger btn-reject">Reject</button>' +
-                '<span class="status-label" style="display:none;"></span>' +
-                '</td>' +
-                '</tr>';
+        ... (existing JavaScript code) ... 
+function addTableRow(firstName, lastName, email, bloodGroup, units, date, status) {
+    var newRow = '<tr>' +
+        '<td>' + ($('#donationRequestsTableBody tr').length + 1) + '</td>' +
+        '<td>' + firstName + '</td>' +
+        '<td>' + lastName + '</td>' +
+        '<td>' + email + '</td>' +
+        '<td>' + bloodGroup + '</td>' +
+        '<td>' + units + '</td>' +
+        '<td>' + date + '</td>' +
+        '<td class="action-cell">' +
+        '<button class="btn btn-success btn-accept">Accept</button>' +
+        '<button class="btn btn-danger btn-reject">Reject</button>' +
+        '<span class="status-label" style="display:none;">' + status + '</span>' +
+        '</td>' +
+        '</tr>';
 
-            // Append the new row to the table body
-            var $newRow = $(newRow);
-            $('#donationRequestsTableBody').append($newRow);
+    // Append the new row to the table body
+    var $newRow = $(newRow);
+    $('#donationRequestsTableBody').append($newRow);
 
-            // Click event handler for the "Accept" button in the new row
-            $newRow.find('.btn-accept').on('click', function () {
-                // Hide the buttons
-                $newRow.find('.btn-accept, .btn-reject').hide();
-                // Show the status label
-                $newRow.find('.status-label').text('Accepted').addClass('text-success').show();
-            });
+    // Click event handler for the "Accept" button in the new row
+    $newRow.find('.btn-accept').on('click', function () {
+        // Toggle the buttons
+        $newRow.find('.btn-accept, .btn-reject').toggle();
+        // Show the status label
+        $newRow.find('.status-label').text('Accepted').addClass('text-success').show();
+    });
 
-            // Click event handler for the "Reject" button in the new row
-            $newRow.find('.btn-reject').on('click', function () {
-                // Hide the buttons
-                $newRow.find('.btn-accept, .btn-reject').hide();
-                // Show the status label
-                $newRow.find('.status-label').text('Rejected').addClass('text-danger').show();
-            });
-        }
+    // Click event handler for the "Reject" button in the new row
+    $newRow.find('.btn-reject').on('click', function () {
+        // Toggle the buttons
+        $newRow.find('.btn-accept, .btn-reject').toggle();
+        // Show the status label
+        $newRow.find('.status-label').text('Rejected').addClass('text-danger').show();
+    });
+}
+
 
         // Add a sample row when the page loads
         $(document).ready(function () {
             addTableRow('John', 'Doe', 'john.doe@example.com', 'A+', '2','11-2-2023');
         });
-    </script>
+    </script>-->
+    
+    <script>
+$(document).ready(function () {
+    // Add click event handlers for dynamically generated rows
+    $('.btn-accept').on('click', function () {
+        var $row = $(this).closest('tr');
+        $row.find('.btn-accept, .btn-reject').hide();
+        $row.find('.status-label').text('Accepted').addClass('text-success').show();
+    });
+
+    $('.btn-reject').on('click', function () {
+        var $row = $(this).closest('tr');
+        $row.find('.btn-accept, .btn-reject').hide();
+        $row.find('.status-label').text('Rejected').addClass('text-danger').show();
+    });
+});
+</script>
+    
+    
     </body>
 
     </html>
