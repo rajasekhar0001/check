@@ -131,6 +131,12 @@
                                 <span class="hide-menu">Blood Expiry Details</span>
                             </a>
                         </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/viewUserDetails" aria-expanded="false">
+                                <i class="fa fa-table" aria-hidden="true"></i>
+                                <span class="hide-menu">User Details</span>
+                            </a>
+                        </li>
                          <li class="text-center p-20 signout-btn">
                             <a href="/userLogin"
                                 class="btn d-grid btn-danger text-white" target="_blank">
@@ -173,7 +179,7 @@
                                 </thead>
                                 <tbody id="donationRequestsTableBody">
                                     <!-- Use Thymeleaf to iterate over the list of donorData from the controller -->
-<<<<<<< HEAD
+
                                     <tr th:each="donor, rowStat : ${donor}">
                                         <td th:text="${rowStat.index + 1}"></td>
                                         <td th:text="${donor.firstname}"></td>
@@ -184,7 +190,7 @@
                                         <td th:text="${donor.dateOfDonation}"></td>         
                                         <!-- ... (existing HTML code) ... -->
 										<td class="action-cell">
-=======
+
                                    <tr th:each="donor, rowStat : ${donor}">
     <td th:text="${rowStat.index + 1}"></td>
     <td th:text="${donor.firstname}"></td>
@@ -200,20 +206,20 @@
         <span class="status-label" style="display:none;"></span>
     </td>-->
     <td class="action-cell">
->>>>>>> 14f3d4a2cb77bfeb0cdeee47559ff7337836c1da
+
                 <!--<button class="btn btn-success btn-accept"  th:data-onclick="'accept(\'' + ${donor.email} + '\')'">Accept</button>-->
                 <button class="btn btn-success btn-accept" th:attr="onclick='accept(\'' + ${donor.email} + '\')'">Accept</button>
                 <button class="btn btn-danger btn-reject"th:attr="onclick='reject(\'' + ${donor.email} + '\')'">Reject</button>
                  <span class="status-label" style="display:none;"></span>
                </td>
-<<<<<<< HEAD
+
                
               
                                     </tr>
-=======
+
 </tr>
                                     <!-- ... (your existing table body) ... -->
->>>>>>> 14f3d4a2cb77bfeb0cdeee47559ff7337836c1da
+
                                 </tbody>
                             </table>
                         </div>
@@ -365,7 +371,7 @@ function addTableRow(firstName, lastName, email, bloodGroup, units, date, status
         });
     </script>
 
-=======
+
     </script>-->
     
     <script>
@@ -386,7 +392,7 @@ $(document).ready(function () {
 </script>
     
     
->>>>>>> 14f3d4a2cb77bfeb0cdeee47559ff7337836c1da
+
     </body>
 
     </html>

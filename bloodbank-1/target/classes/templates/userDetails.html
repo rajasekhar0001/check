@@ -217,30 +217,43 @@
                                             <th class="border-top-0">Last Name</th>
                                             <th class="border-top-0">Email</th>
                                             <th class="border-top-0">Blood Group</th>
-                                            <th class="border-top-0">No.of Units</th>
-                                            <th class="border-top-0">Date of Donation</th>
-                                            <th class="border-top-0">Status</th>
+                                            <th class="border-top-0">Gender</th>
+                                            <th class="border-top-0">Date Of Birth</th>
+                                            <th class="border-top-0">City</th>
                                             
                                         </tr>
                                     </thead>
                                  
-                                     <tbody id="donationRequestsTableBody">
-        <!-- Use Thymeleaf's th:each to iterate over donorData -->
-        <tr th:each="donor, rowStat : ${donor}">
-            <td th:text="${rowStat.index + 1}"></td>
-           <td th:text="${donor.firstname}">John</td>
-            <td th:text="${donor.lastname}">Doe</td>
-            <td class="email" th:text="${donor.email}">john.doe@example.com</td>
-            <td th:text="${donor.bloodGroup}">A+</td>
-            <td th:text="${donor.units}">2</td>
-            <td th:text="${donor.dateOfDonation}">11-2-2023</td>
-            
-            <!-- Use Thymeleaf's th:if to conditionally set the status text and class -->
-            <td th:if="${donor.status eq 0}" class="text-warning">Pending</td>
-            <td th:if="${donor.status eq 1}" class="text-success">Accepted</td>
-            <td th:if="${donor.status eq -1}" class="text-danger">Rejected</td>
-        </tr>
+                                    <tbody id="donationRequestsTableBody">
+    <!-- Use Thymeleaf's th:each to iterate over user -->
+    <tr th:each="user, rowStat : ${user}">
+        <td th:text="${rowStat.index + 1}"></td>
+        <td th:text="${user.firstname}">John</td>
+        <td th:text="${user.lastname}">Doe</td>
+        <td class="email" th:text="${user.email}">john.doe@example.com</td>
+        <td th:text="${user.bloodGroup}">A+</td>
+        <td th:text="${user.gender}"></td>
+        <td th:text="${user.dateOfBirth}"></td>
+        <td th:text="${user.city}">2</td>
+        <!-- Add more columns as needed -->
+
+        <!-- Use Thymeleaf's th:if to conditionally set the status text and class -->
+        <!--
+        <td th:if="${user.status eq 0}" class="text-warning">Pending</td>
+        <td th:if="${user.status eq 1}" class="text-success">Accepted</td>
+        <td th:if="${user.status eq -1}" class="text-danger">Rejected</td>
+        -->
+    </tr>
+</tbody>
+
     </tbody>
+                                    <tfoot>
+    <tr>
+        <td colspan="10" class="action-cell">
+            <button class="btn btn-danger btn-clear-expiry" onclick="eligibleToDonate()">Eligible To Donate</button>
+        </td>
+    </tr>
+</tfoot>
     
     
    <!-- <tbody id="donationRequestsTableBody">
@@ -280,6 +293,34 @@
 
         <!-- Include Bootstrap JS -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+        
+        
+        <script>
+
+function eligibleToDonate() {
+    console.log('Calling eligibleToDonate function');
+
+    // Assuming you have an endpoint '/admin/eligibleToDonate' on the server
+    fetch('/admin/eligibleToDonate', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log('Eligible to donate function executed successfully');
+            // You can handle the response here if needed
+        } else {
+            console.error('Failed to execute eligibleToDonate function:', response.statusText);
+        }
+    })
+    .catch(error => console.error('Error calling eligibleToDonate function:', error));
+}
+
+</script>
+        
+        
         
         <script>
 	
