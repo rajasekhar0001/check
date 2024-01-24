@@ -239,7 +239,8 @@ canvas {
                      
                     <div class="mt-5 text-center">
                        <!-- <button class="btn btn-primary profile-button" type="button" onclick="updateProfile()">Update Profile</button>-->
-                        <button class="btn btn-primary profile-button" type="submit" onclick="saveAndUpdateProfile()">Save Profile</button>
+                       <button class="btn btn-primary profile-button" type="button" onclick="saveAndUpdateProfile()">Save Profile</button>
+
                     </div>
                     
                     
@@ -373,7 +374,7 @@ canvas {
 
 
 <script>
-    function updateProfile() {
+   
         // Your updateProfile logic
          function updateProfile() {
         // Retrieve values from form fields
@@ -416,9 +417,17 @@ canvas {
 
         // Submit the form
         document.getElementById('profileUpdate').submit();
+         console.log('updateProfile function called');
+         
+         
+         document.getElementById('profileUpdate').thObject = updatedProfile;
+
+    // Display any error message from the server
+    
+         
     }
-        console.log('updateProfile function called');
-    }
+       
+    
 
     function saveProfile(event) {
         // Assuming that adminUpdate is set on the server side
@@ -435,11 +444,12 @@ canvas {
         console.log('saveProfile function called');
     }
 
-    function saveAndUpdateProfile() {
-        // Call both updateProfile and saveProfile
-        updateProfile();
-        saveProfile(event);
-    }
+   function saveAndUpdateProfile() {
+    // Call both updateProfile and saveProfile
+    updateProfile();
+    saveProfile(event || window.event);
+}
+
 </script>
 
  
