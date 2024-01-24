@@ -225,4 +225,8 @@ public class UserWebController {
 	public String userDetail() {
 		return "userDetails";
 	}
+	@GetMapping("/userEligible")
+	public String userEligible() {
+		return "userEligible";
+	}
 }

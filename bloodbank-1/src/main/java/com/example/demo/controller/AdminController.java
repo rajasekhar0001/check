@@ -243,7 +243,7 @@ public class AdminController {
   System.out.println(data.get(0));
   System.out.println(data.get(1));
        model.addAttribute("user",data );
-       return "redirect:/admin/userDetails";
+       return "userDetails";
   }
   
   @PostMapping("/updateDetails")//1
