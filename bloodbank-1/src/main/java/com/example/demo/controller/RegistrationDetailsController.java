@@ -97,10 +97,10 @@ public class RegistrationDetailsController {
 		return service.getRegistrationDetailsByEmail(email);
 	}
 	
-	@GetMapping("/getRegistrationDetailsByRole/{role}")//1
-	public List<RegistrationDetails> findByLoginType(@PathVariable("role") String role) {
-		return service.getRegistrationDetailsByRole(role);
-	}
+//	@GetMapping("/getRegistrationDetailsByRole/{role}")//1
+//	public List<RegistrationDetails> findByLoginType(@PathVariable("role") String role) {
+//		return service.getRegistrationDetailsByRole(role);
+//	}
 	
 	
 }
