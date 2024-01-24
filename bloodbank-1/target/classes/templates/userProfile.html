@@ -1,6 +1,3 @@
-
-
-
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -61,7 +58,7 @@ color: red
 }
 
 canvas {
-    width: 1100px; /* Adjust as needed for the desired size */
+    width: 800px; /* Adjust as needed for the desired size */
     height: 800px; /* Adjust as needed for the desired size */
     margin: 20px auto;
 }
@@ -145,7 +142,7 @@ canvas {
               
        <div class="col-md-6" th:each="userDetail : ${user}">
     <label class="labels">Gender</label>
-    <select class="form-control" name="gender">
+    <select class="form-control" name="gender" >
         <option value="" th:selected="${userDetail.gender == null or userDetail.gender == ''}">Select Gender</option>
         <option value="male" th:selected="${userDetail.gender == 'male'}">Male</option>
         <option value="female" th:selected="${userDetail.gender == 'female'}">Female</option>
@@ -155,7 +152,7 @@ canvas {
 
                           
                        
-                    <div class="col-md-6"><label class="labels">Date of Birth</label><input type="date" class="form-control" value="" name="dateOfBirth" placeholder="dob"></div>
+                    <div class="col-md-6"><label class="labels">Date of Birth</label><input type="date" class="form-control" value="" name="dateOfBirth" placeholder="dob" th:value="${user != null and user.size() > 0 ? user[0].dateOfBirth : ''}" required></div>
 
 			<br>
                    <div class="col-md-12" th:each="userDetail : ${user}">
@@ -175,57 +172,25 @@ canvas {
 
                     </div>
                     
-                   <span class="error-attribute" th:if="${userUpdate != null and userUpdate != ''}" th:text="${userUpdate}"></span>
-
+<!--                   <span class="error-attribute" th:if="${userUpdate != null and userUpdate != ''}" th:text="${userUpdate}"></span>
+-->
                     <div class="mt-5 text-center">
                        <!-- <button class="btn btn-primary profile-button" type="button" onclick="updateProfile()">Update Profile</button>-->
-                        <button class="btn btn-primary profile-button" type="submit"s>Save Profile</button>
+						<a href="/userHome" class="btn btn-primary profile-button">Go Home</a>                        
+						<button class="btn btn-primary profile-button" type="submit" onclick="saveProfile()">Save Profile</button>
                     </div>
                         
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="p-3 py-5"><br><br>
-<!--                     <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br> 
--->                   
-                        <!-- <div class="col-md-12">
-                        <label class="labels" aria-placeholder="blood group">Blood Group</label>
-                        <select class="form-control" name="bloodGroup">
-                           <option value="">None</option> 
-                            <option value="A+">A+</option>
-                          <option value="A-">A-</option>
-                          <option value="B+">B+</option>
-                          <option value="B-">B-</option>
-                          <option value="O+">O+</option>
-                          <option value="O-">O-</option>
-                          <option value="AB+">AB+</option>
-                          <option value="AB-">AB-</option>
-                        </select>
-                      </div><br>-->
+                <div class="p-3 py-5">
                       
                       
-                      
-   <!--                    <div class="col-md-12" th:each="userDetail : ${user}">
-     <label class="labels" aria-placeholder="blood group">Blood Group</label>
-    <select class="form-control" name="bloodGroup">
-    	 <option value="" th:selected="${userDetail.bloodGroup == null or userDetail.bloodGroup == ''}">Select Blood Group</option>
-        <option value="A+" th:selected="${userDetail.bloodGroup == 'A+'}">A+</option>
-        <option value="A-" th:selected="${userDetail.bloodGroup == 'A-'}">A-</option>
-        <option value="B+" th:selected="${userDetail.bloodGroup == 'B+'}">B+</option>
-        <option value="B-" th:selected="${userDetail.bloodGroup == 'B-'}">B-</option>
-        <option value="O+" th:selected="${userDetail.bloodGroup == 'O+'}">O+</option>
-        <option value="O-" th:selected="${userDetail.bloodGroup == 'O-'}">O-</option>
-        <option value="AB+" th:selected="${userDetail.bloodGroup == 'AB+'}">AB+</option>
-        <option value="AB-" th:selected="${userDetail.bloodGroup == 'AB-'}">AB-</option>
-    </select>
-</div> --><br>
 
                       
                       
                       
                       
-                    <!-- <div class="col-md-12"><label class="labels">Blood Group</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br> -->
-                   <!-- <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>-->
                 </div>
             </div>
         </div>
@@ -235,69 +200,17 @@ canvas {
 </form>
    
 </body>
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
- integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
- crossorigin="anonymous"></script>
- <script>
-    function showSuccessMessage() {
-      // Assuming your form has an id of "profileForm"
-      document.getElementById('profileForm').addEventListener('submit', function() {
-        alert('Profile saved successfully!');
-      });
-    }
-  </script> -->
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
   crossorigin="anonymous"></script>
-<!-- <script>
-     document.getElementById('profileForm').addEventListener('submit', function() {
-         alert('Profile saved successfully!');
-     });
- </script>-->
-<<!-- script>
-    function updateProfile() {
-        // Retrieve values from form fields
-        var firstName = document.querySelector('input[name="firstName"]').value;
-        var lastName = document.querySelector('input[name="lastName"]').value;
-        var mobileNumber = document.querySelector('input[name="mobileNumber"]').value;
-        var address = document.querySelector('input[name="address"]').value;
-        var postCode = document.querySelector('input[name="postCode"]').value;
-        var city = document.querySelector('input[name="city"]').value;
-        var state = document.querySelector('input[name="state"]').value;
-        var email = document.querySelector('input[name="email"]').value;
-        var password = document.querySelector('input[name="password"]').value;
-        var gender = document.querySelector('select[name="gender"]').value;
-        var dob = document.querySelector('input[name="dob"]').value;
-        // Add similar lines for other fields
-
-        // Create an object with the updated values
-        var updatedProfile = {
-            firstName: firstName,
-            lastName: lastName,
-            mobileNumber: mobileNumber,
-            address: address,
-            postCode: postCode,
-            city: city,
-            state: state,
-            email: email,
-            password: password,
-            gender: gender,
-            dob: dob
-            // Add similar lines for other fields
-        };
-
-        // Populate the form fields with the updated values
-        document.querySelector('input[name="firstName"]').value = updatedProfile.firstName;
-        document.querySelector('input[name="lastName"]').value = updatedProfile.lastName;
-        // Add similar lines for other fields
-
-        // Update the Thymeleaf object with the updated values
-        document.getElementById('profileUpdate').thObject = updatedProfile;
-
-        // Submit the form
-        document.getElementById('profileUpdate').submit();
+    <script>
+    function saveProfile() {
+        // Add your logic for saving the profile here
+        alert("Profile Saved!")
     }
-</script> -->
+</script>
+
 
  
 </html>

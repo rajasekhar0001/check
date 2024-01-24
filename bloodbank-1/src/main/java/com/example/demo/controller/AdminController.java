@@ -10,6 +10,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -143,60 +144,6 @@ public class AdminController {
 	    // Return the Thymeleaf template name
 	    return "adminProfile";
 	}
-
-
-	
-	
-
-//  @GetMapping("/getInventory")
-//	public List<Inventory> getDetails() {
-//	  List<Inventory> a = new ArrayList<>();
-//	  	
-//		a= inventoryService.getInventoryDetails();
-//		int a_pos = inventoryService.getBloodCount("A+");
-//		int a_neg = inventoryService.getBloodCount("A-");
-//		int b_pos = inventoryService.getBloodCount("B+");
-//		int b_neg = inventoryService.getBloodCount("B-");
-//		int ab_pos = inventoryService.getBloodCount("AB+");
-//		int ab_neg = inventoryService.getBloodCount("AB-");
-//		int o_pos = inventoryService.getBloodCount("O+");
-//		int o_neg = inventoryService.getBloodCount("O-");
-//		System.out.println(a.get(0));
-//		System.out.println("o+ :" + o_pos);
-//		return a;
-//		
-//	}
-	
-  
-//  @GetMapping("/getInventoryDetailsByBloodGroup/{BloodGroup}")
-//	public List<Inventory> findDetailsByBloodGroup(@PathVariable("BloodGroup") String bloodGroup) {
-//		return inventoryService.findByBloodGroup(bloodGroup);
-//		
-//	}
-
-	
-	
-
-//  @GetMapping("/getInventory")
-//	public List<Inventory> getDetails() {
-//	  List<Inventory> a = new ArrayList<>();
-//	  	
-//		a= inventoryService.getInventoryDetails();
-//		int a_pos = inventoryService.getBloodCount("A+");
-//		int a_neg = inventoryService.getBloodCount("A-");
-//		int b_pos = inventoryService.getBloodCount("B+");
-//		int b_neg = inventoryService.getBloodCount("B-");
-//		int ab_pos = inventoryService.getBloodCount("AB+");
-//		int ab_neg = inventoryService.getBloodCount("AB-");
-//		int o_pos = inventoryService.getBloodCount("O+");
-//		int o_neg = inventoryService.getBloodCount("O-");
-//		System.out.println(a.get(0));
-//		System.out.println("o+ :" + o_pos);
-//		return a;
-//		
-//	}
-	
-	
 	
 	@GetMapping("/getInventory")
 	public String getDetails(Model model) {
@@ -221,34 +168,6 @@ public class AdminController {
 	    return "bloodInventoryTable"; // Replace with the actual Thymeleaf template name
 	}
 	
-	
-	
-	//@GetMapping("/getInventory")
-//	public List<BloodGroupDetails> getDetail() {
-//	    List<BloodGroupDetails> bloodGroupDetailsList = new ArrayList<>();
-//
-//	    bloodGroupDetailsList.add(new BloodGroupDetails("A+", inventoryService.getBloodCount("A+")));
-//	    bloodGroupDetailsList.add(new BloodGroupDetails("A-", inventoryService.getBloodCount("A-")));
-//	    bloodGroupDetailsList.add(new BloodGroupDetails("B+", inventoryService.getBloodCount("B+")));
-//	    bloodGroupDetailsList.add(new BloodGroupDetails("B-", inventoryService.getBloodCount("B-")));
-//	    bloodGroupDetailsList.add(new BloodGroupDetails("AB+", inventoryService.getBloodCount("AB+")));
-//	    bloodGroupDetailsList.add(new BloodGroupDetails("AB-", inventoryService.getBloodCount("AB-")));
-//	    bloodGroupDetailsList.add(new BloodGroupDetails("O+", inventoryService.getBloodCount("O+")));
-//	    bloodGroupDetailsList.add(new BloodGroupDetails("O-", inventoryService.getBloodCount("O-")));
-//	    
-//	    
-//	    System.out.println(bloodGroupDetailsList.get(0));
-//	    System.out.println(bloodGroupDetailsList.get(1));
-//	    System.out.println(bloodGroupDetailsList.get(3));
-//
-//	    //model.addAttribute("bloodGroupDetailsList", bloodGroupDetailsList);
-//
-//	    //return "bloodInventoryTable.html"; // Replace with the actual Thymeleaf template name
-//	    return bloodGroupDetailsList;
-//	}
-
-	
-	
   
   @GetMapping("/getInventoryDetailsByBloodGroup/{BloodGroup}")
 	public List<Inventory> findDetailsByBloodGroup(@PathVariable("BloodGroup") String bloodGroup) {
@@ -256,21 +175,6 @@ public class AdminController {
 		
 	}
   
-  
-  
-//  @GetMapping("//getInventoryQuantityByBloodGroup")
-//  public Map<String, Integer> getBloodGroupCounts() {
-//      return inventoryService.getInventoryByBloodGroup();
-//  }
-//  public List<Inventory> getQuantityByBloodGroup() {
-//      return inventoryService.findQuantityByBloodGroup();
-//  }
-//  
-  
-//  @GetMapping("/inventory/{bloodGroup}")
-//  public List<Inventory> getInventoryByBloodGroup(@PathVariable String bloodGroup) {
-//      return inventoryService.getInventoryByBloodGroup(bloodGroup);
-//  }
   
   @GetMapping("/countStatus1")
   public List<Integer> countDonorsWithStatusOne() {
@@ -282,17 +186,6 @@ public class AdminController {
       return countDonor;
      
       }
-  
-//  @GetMapping("countStatusBloodRequest")
-//  public int countBloodRequest(){
-//	  List<PatientDetails> saved = patientDetailsService.getTotalRequestCount();
-//	  int count = saved.size();
-//	  //List<Integer> countRequest= new ArrayList<>();
-//	  System.out.println(count);
-//	  return count;
-//	  
-//  }
-  
   
   @GetMapping("/getCountByBloodGroup/{bloodGroup}")
   public Map<String, Long> getCountByBloodGroup(@PathVariable String bloodGroup) {
@@ -315,11 +208,7 @@ public class AdminController {
 	  return "bloodDonationView";
   }
   
-//  @GetMapping("/getDonorDetailsByEmial/{email}")
-//	public List<PatientDetails> getPatientDetailsByEmail(@PathVariable String email) {
-//		return patientDetailsService.getPatientsDetailsByEmail(email);
-//	}
-  
+
   @GetMapping("/getInventoryDetails")
 	public String getInventoryDetails(Model model) {
 	  List<Inventory> details = new ArrayList<>();
@@ -341,11 +230,20 @@ public class AdminController {
 	  return inventoryService.checkForOldBloodSamples(donors);
   }
   
-  @GetMapping("/eligibleToDonate")//1
-  public List<DonorDetails> checkEligibility(){
-  List<DonorDetails> donors = donorDetailsService.getDonorDetails();
   
-      return donorDetailsService.checkEligibility(donors);
+   	
+  @GetMapping("/eligibleToDonate")
+  @ResponseStatus(HttpStatus.OK)
+  public String checkEligibility(Model model){
+  List<DonorDetails> donors = donorDetailsService.getDonorDetails();
+  System.out.println("ELIBLEEEEEEE");
+  List<DonorDetails> data = new ArrayList<>();
+  
+  data = donorDetailsService.checkEligibility(donors);
+  System.out.println(data.get(0));
+  System.out.println(data.get(1));
+       model.addAttribute("user",data );
+       return "userDetails";
   }
   
   @PostMapping("/updateDetails")//1
@@ -397,18 +295,17 @@ public class AdminController {
   		return "bloodRequestAdmin";
   	}
   	
-
-//	@PostMapping("/acceptDonationRequest")//1
-//	public String acceptDonationRequest(@RequestBody DonorDetails received){
-//		return service.acceptDonationRequest(received);
-//	}
+  	@GetMapping("/viewUserDetails")
+  	public String viewUserDetails(Model model) {
+  		List<RegistrationDetails> data = new ArrayList<>();
+  		data = registrationDetailsService.getRegistrationDetails();
+  		model.addAttribute("user", data);
+  		
+  		
+  		return "userDetails";
+  	}
   	
-//  	@PostMapping("/acceptDonationRequest/{email}")
-//  	public String acceptDonationRequest(@PathVariable String email) {
-//  	  
-//  	    return service.acceptDonationRequest(email);
-//  	}
-            
+
   	@PostMapping("/acceptDonationRequest/{email}")
   	@ResponseStatus(HttpStatus.OK)
   	@ResponseBody

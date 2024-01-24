@@ -41,6 +41,7 @@ public class UserController {
 	private RegistrationDetailsService registerService;
 	
 	
+	
 //	@GetMapping("/verifyUserLogin")//1
 //	public String verifyLogin(@ModelAttribute("received") RegistrationDetails received, HttpSession session, Model model) {
 //        int status = loginService.verifyLogin(received);
@@ -197,12 +198,7 @@ public class UserController {
 	
 	@PostMapping("/bloodDonationRequest")//1
 	public String donateRequest(@ModelAttribute("received") DonorDetails received,HttpSession session, Model model) {
-//		if (session.getAttribute("userEmail") == null) {
-//            // Session is valid, return the Thymeleaf template name for the user home page
-//            return "userLogin";
-//        } 
-//		System.out.println("donation request");
-//		System.out.println(received.getDateOfDonation() + " " + received.getCity());
+//		
 		if (loginService.validateUserDetails(received))
 		{
 			model.addAttribute("donateMessage", "Fill profile details before going for donation");
@@ -213,11 +209,11 @@ public class UserController {
 		switch(status) {
 		case 0:model.addAttribute("donateMessage", "Email not found");
 		return "donationRequest";
-		case 1:  model.addAttribute("donateMessage", "You are eligible to donate, request needs to be accepted by admin");
+		case 1:  //model.addAttribute("donateMessage", "You are eligible to donate, request needs to be accepted by admin");
 		return "userHome";
 		case 2:model.addAttribute("donateMessage", "you are not allowed to Donate Blood, age should be minimum 18 years");
 		return "donationRequest";
-		case 3:model.addAttribute("donateMessage","Older people are not allowe to donate");
+		case 3:model.addAttribute("donateMessage","Older people are not allowed to donate age should be less than 65");
 		return "donationRequest";
 		case 4:
 			model.addAttribute("donateMessage", "You can't make a request again without the last request getting verified");
@@ -228,7 +224,7 @@ public class UserController {
 			
 		}
 		System.out.println("donation request  "  + "  " + received.getEmail() + " " +  " " + received.getDateOfDonation());
-		return "userHome";
+		return "donationRequest";
 	}
 	
 	@PostMapping("/bloodRequestSelf")  //1
@@ -240,6 +236,13 @@ public class UserController {
 //            // Session is valid, return the Thymeleaf template name for the user home page
 //            return "userLogin";
 //        } 
+		
+		if (loginService.validateUserDetailsForPatient(received))
+		{
+			model.addAttribute("bloodRequestStatus", "Fill profile details before requesting blood");
+			return "bloodRequest";
+		}
+		
 		System.out.println(received.getEmail()+ " " + received.getBloodGroup() + " " + received.getBloodUnits());
 //		return "userHome";
 		int status = loginService.bloodRequestSelf(received);
@@ -253,7 +256,7 @@ public class UserController {
 			model.addAttribute("bloodRequestStatus", "There is no enough blood in the Inventory");
 		else {
 			model.addAttribute("bloodRequestStatus", "Blood is available, admin has to accept your request");
-			return "userHome";
+			return "bloodRequest";
 		}
 		return "bloodRequest";
 	}
@@ -267,6 +270,13 @@ public class UserController {
 //            // Session is valid, return the Thymeleaf template name for the user home page
 //            return "userLogin";
 //        } 
+		
+		if (loginService.validateUserDetailsForPatient(received))
+		{
+			model.addAttribute("bloodRequestStatus", "Fill profile details before requesting blood");
+			return "bloodRequest";
+		}
+		
 		
 		System.out.println("mmmm : " + received.getEmail());
 		System.out.println(received.getEmail()+ " " + received.getBloodGroup() + " " + received.getBloodUnits());
@@ -282,7 +292,8 @@ public class UserController {
 			model.addAttribute("bloodRequestStatus", "There is no enough blood in the Inventory");
 		else {
 			model.addAttribute("bloodRequestStatus", "Blood is available, admin has to accept your request");
-			return "userHome";
+			
+			return "bloodRequest";
 		}
 		return "bloodRequest";
 	}

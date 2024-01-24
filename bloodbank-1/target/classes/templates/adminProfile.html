@@ -9,8 +9,9 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <title>admin
-		Profile</title>
+    <title>Admin Profile</title>
+    <link rel="icon" href="static/images/favicon.ico" type="image/x-icon">
+
     <style>
         body {
     background: rgb(124, 207, 255)
@@ -115,7 +116,7 @@ canvas {
     <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
     <span class="font-weight-bold"></span>
     <span class="text-black-50" th:text="${userDetail.id}"></span>
-    <span class="font-weight-bold"</span>
+    <span class="font-weight-bold"></span>
     <span class="text-black-50" th:text="${userDetail.email}"></span>
 </div>
 
@@ -142,12 +143,12 @@ canvas {
                     
                     <div class="col-md-6">
     <label class="labels">Name</label>
-    <input type="text" class="form-control" placeholder="first name" value="" name="firstname"
+    <input type="text" class="form-control" placeholder="First Name" value="" name="firstname"
            th:value="${user != null and user.size() > 0 ? user[0].firstname : ''}">
 </div>
                     <div class="col-md-6">
     <label class="labels">Surname</label>
-    <input type="text" class="form-control" placeholder="lastname" value="" name="lastname"
+    <input type="text" class="form-control" placeholder="Last Name" value="" name="lastname"
            th:value="${user != null and user.size() > 0 ? user[0].lastname : ''}">
 </div>
 
@@ -162,7 +163,7 @@ canvas {
                     <!-- City -->
 <div class="col-md-12">
     <label class="labels">City</label>
-    <input type="text" class="form-control" placeholder="enter address line" value="" name="city"
+    <input type="text" class="form-control" placeholder="Enter City" value="" name="city"
            th:value="${user != null and user.size() > 0 ? user[0].city : ''}">
 </div>
 
@@ -189,7 +190,7 @@ canvas {
 
                           
                        
-                    <div class="col-md-6"><label class="labels">Date of Birth</label><input type="date" class="form-control" value="" name="dateOfBirth" placeholder="dob"></div>
+                    <div class="col-md-6"><label class="labels">Date of Birth</label><input type="date" class="form-control" value="" name="dateOfBirth" placeholder="dob" th:value="${user != null and user.size() > 0 ? user[0].dateOfBirth : ''}" required></div>
 
                     </div>
                     
@@ -235,6 +236,7 @@ canvas {
 
 </div>
     </div>
+<<<<<<< HEAD
 
                      
                     <div class="mt-5 text-center">
@@ -270,6 +272,9 @@ canvas {
                       
                       
                       <div class="col-md-12" th:each="userDetail : ${user}">
+=======
+                        <div class="col-md-12" th:each="userDetail : ${user}">
+>>>>>>> 66d235987348a72cf39291d2bc2a83b750c36f83
      <label class="labels" aria-placeholder="blood group">Blood Group</label>
     <select class="form-control" name="bloodGroup">
         <option value="A+" th:selected="${userDetail.bloodGroup == 'A+'}">A+</option>
@@ -281,14 +286,32 @@ canvas {
         <option value="AB+" th:selected="${userDetail.bloodGroup == 'AB+'}">AB+</option>
         <option value="AB-" th:selected="${userDetail.bloodGroup == 'AB-'}">AB-</option>
     </select>
-</div><br>
+</div>
+
+                     
+                    <div class="mt-5 text-center">
+                       <!-- <button class="btn btn-primary profile-button" type="button" onclick="updateProfile()">Update Profile</button>-->
+                        <a href="/adminHome" class="btn btn-primary profile-button">Go Home</a>                        
+                        <button class="btn btn-primary profile-button" type="submit" onclick="saveProfile()">Save Profile</button>
+                    </div>
+                    
+                    
+                    
+                        
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3 py-5">
+
+                      
+                      
+                      
+  
 
                       
                       
                       
                       
-                    <!-- <div class="col-md-12"><label class="labels">Blood Group</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br> -->
-                   <!-- <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>-->
                 </div>
             </div>
         </div>
@@ -298,72 +321,14 @@ canvas {
 </form>
    
 </body>
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
- integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
- crossorigin="anonymous"></script>
- <script>
-    function showSuccessMessage() {
-      // Assuming your form has an id of "profileForm"
-      document.getElementById('profileForm').addEventListener('submit', function() {
-        alert('Profile saved successfully!');
-      });
-    }
-  </script> -->
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
   crossorigin="anonymous"></script>
-<!-- <script>
-     document.getElementById('profileForm').addEventListener('submit', function() {
-         alert('Profile saved successfully!');
-     });
- </script>-->
-<!--<script>
-    function updateProfile() {
-        // Retrieve values from form fields
-        var firstName = document.querySelector('input[name="firstName"]').value;
-        var lastName = document.querySelector('input[name="lastName"]').value;
-        var mobileNumber = document.querySelector('input[name="mobileNumber"]').value;
-        var address = document.querySelector('input[name="address"]').value;
-        var postCode = document.querySelector('input[name="postCode"]').value;
-        var city = document.querySelector('input[name="city"]').value;
-        var state = document.querySelector('input[name="state"]').value;
-        var email = document.querySelector('input[name="email"]').value;
-        var password = document.querySelector('input[name="password"]').value;
-        var gender = document.querySelector('select[name="gender"]').value;
-        var dob = document.querySelector('input[name="dob"]').value;
-        // Add similar lines for other fields
-
-        // Create an object with the updated values
-        var updatedProfile = {
-            firstName: firstName,
-            lastName: lastName,
-            mobileNumber: mobileNumber,
-            address: address,
-            postCode: postCode,
-            city: city,
-            state: state,
-            email: email,
-            password: password,
-            gender: gender,
-            dob: dob
-            // Add similar lines for other fields
-        };
-
-        // Populate the form fields with the updated values
-        document.querySelector('input[name="firstName"]').value = updatedProfile.firstName;
-        document.querySelector('input[name="lastName"]').value = updatedProfile.lastName;
-        // Add similar lines for other fields
-
-        // Update the Thymeleaf object with the updated values
-        document.getElementById('profileUpdate').thObject = updatedProfile;
-
-        // Submit the form
-        document.getElementById('profileUpdate').submit();
-    }
-</script>
-
-<script>
+  
+  <script>
     function saveProfile() {
+<<<<<<< HEAD
         // Add your logic to handle the save profile functionality
 
         // For demonstration purposes, I'll toggle the error message visibility
@@ -450,7 +415,13 @@ canvas {
     saveProfile(event || window.event);
 }
 
+=======
+        // Add your logic for saving the profile here
+        alert("Profile Saved!")
+    }
+>>>>>>> 66d235987348a72cf39291d2bc2a83b750c36f83
 </script>
+
 
  
 </html>

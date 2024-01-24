@@ -8,15 +8,20 @@
     <meta name="keywords" content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template">
     <meta name="description" content="Ample Admin Lite is powerful and clean admin dashboard template, inspired by Bootstrap Framework">
     <meta name="robots" content="noindex,nofollow">
-    <title>Ample Admin Lite Template by WrapPixel</title>
-    <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/plugins/images/favicon.png">
+    <title>Blood Donation View</title>
+<!--    <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
+-->    <!-- Favicon icon -->
+    <link rel="icon" href="static/images/favicon.ico" type="image/x-icon">
     <!-- Custom CSS -->
     <link href="/static/css/style.min.css" rel="stylesheet">
 
     <!-- Add Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
 
     <style>
         .navbar-skyblue {
@@ -60,7 +65,7 @@
             <nav class="navbar top-navbar navbar-expand-md navbar-skyblue">
                 <div class="navbar-header" data-logobg="skin6">
                     <a class="navbar-brand" href="dashboard.html">
-                        <span class="company-name">Blood Buddies</span>
+                        <span class="company-name">HemoHarbor</span>
                     </a>
                     <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
                 </div>
@@ -140,10 +145,14 @@
                                 <span class="hide-menu">Blood Expiry Details</span>
                             </a>
                         </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/viewUserDetails" aria-expanded="false">
+                                <i class="fa fa-table" aria-hidden="true"></i>
+                                <span class="hide-menu">User Details</span>
+                            </a>
+                        </li>
                          <li class="text-center p-20 signout-btn">
-                            <a href="/userLogin"
-                                class="btn d-grid btn-danger text-white" target="_blank">
-                                Sign out</a>
+                            <a href="logout" class="btn d-grid btn-danger text-white">Sign out</a>
                         </li>
                     </ul>
                 </nav>
@@ -158,14 +167,14 @@
                     </div>
                 </div>
             </div>
-             <div class="search-box">
+             <!--<div class="search-box">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Search by email" id="searchInput">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button" onclick="search()">Search</button>
                         </div>
                     </div>
-                </div>
+                </div>-->
             
             <!--
              <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
@@ -200,7 +209,7 @@
                     <div class="col-sm-12">
                         <div class="white-box">
                             <div class="table-responsive">
-                                <table class="table text-nowrap">
+                                <table id="example" class="table text-nowrap">
                                     <thead>
                                         <tr>
                                             <th class="border-top-0">S.No</th>
@@ -318,6 +327,16 @@
         });
     }
 </script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+      <script>
+        $(document).ready(function () {
+            // Initialize DataTable
+            $('#example').DataTable();
+        });
+    </script>
 
         
     </body>

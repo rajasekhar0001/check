@@ -233,14 +233,15 @@ public class UserService {
         	
         	LocalDate lastDonation=LocalDate.parse(detail.getDateOfDonation(), formatter);
 //        	LocalDate currentDate = LocalDate.parse(received.getDateOfDonation(), formatter);
-        	long daysDifference = ChronoUnit.DAYS.between(lastDonation, LocalDate.parse(detail.getDateOfDonation(), formatter));
+        	long daysDifference = ChronoUnit.DAYS.between(lastDonation, LocalDate.parse(received.getDateOfDonation(), formatter));
         	minDays = daysDifference;
 //        	System.out.println("days: " + minDays);
         }
         
-        if (minDays <= 90 )
+        if (minDays <= 90 ) {
+        	System.out.println("days = " + minDays);
         	return 5;   //"Less than in 90 days period of time is not allowed to donate blood again";
-        
+        }
         received.setStatus((byte) 0);
         donateService.saveDonorDetails(received);
 		
@@ -320,6 +321,11 @@ public class UserService {
 		received.setStatus((byte) 0);
 		patientService.savePatientDetails(received);
 		
+		
+//		System.out.println("Sending mail that says blood request made to " + received.getEmail());
+//		emailService.sendEmail(received.getEmail(),"HemoHarbor ", "you Blood Request is pushed to the admin" + "\n With the following request" +"\n ");
+		
+		
 		return 3;   //"Blood is available, admin has to accept your request";
 	}
 	
@@ -395,6 +401,20 @@ public class UserService {
 
 	public boolean validateUserDetails(DonorDetails detail) {
 		
+		List<RegistrationDetails> saved = service.getRegistrationDetailsByEmail(detail.getEmail());
+		RegistrationDetails received = saved.get(0);
+		System.out.println(received);
+		if(received.getFirstname() != null && received.getLastname()!= null && received.getBloodGroup()!= null &&
+				received.getCity() != null && received.getDateOfBirth()!= null  &&
+				received.getGender()!= null )
+			return false;
+			
+		
+		return true;
+	}
+
+	public boolean validateUserDetailsForPatient(PatientDetails detail) {
+
 		List<RegistrationDetails> saved = service.getRegistrationDetailsByEmail(detail.getEmail());
 		RegistrationDetails received = saved.get(0);
 		System.out.println(received);

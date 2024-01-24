@@ -218,11 +218,12 @@
                 <span class="form-label">Reason for Request</span>
                 <textarea id="reason" name="reason" rows="4" required></textarea>
             </div>
-	<span class ="error-attribute" th:if="${bloodRequestStatus}"  th:text="${bloodRequestStatus}"></span>
-								<br><br>
-            <!-- Add a submit button -->
+			<span style="display: none;" id="bloodRequestStatusSpan" class ="error-attribute" th:if="${bloodRequestStatus}"  th:text="${bloodRequestStatus}"></span>						
+        
            <div class="form-btn">
-									<button class="submit-btn" type="submit" >Submit</button>
+			   									<a href="/userHome" class="submit-btn">Go Home</a>                        
+
+									<button class="submit-btn" type="submit" onclick="submitRequest()">Submit</button>
 								</div>
         </div>
     </form>
@@ -289,7 +290,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <span class="form-label">Date of Blood Request</span>
+                                                        <span class="form-label">Date</span>
                                                         <input class="form-control" type="date" name="dateOfBlood" required>
                                                     </div>
                                                 </div>
@@ -305,13 +306,15 @@
                                                 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <span class="form-label">Reason for Blood Request</span>
+                                                        <span class="form-label">Reason</span>
                                                         <textarea class="form-control" name="reason" rows="4" required></textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                             
                                             <div class="form-btn">
+											<a href="/userHome" class="submit-btn">Go Home</a>                        
+
 									<button class="submit-btn" type="submit" >Submit</button>
 								</div>
 								</form>
@@ -342,14 +345,46 @@
             });
         });
     </script>
-	<script>
-		function showSuccessMessage() {
 
-		  document.getElementById('profileForm').addEventListener('submit', function() {
-			alert('Request Sent Successfully!');
-		  });
-		}
-	  </script>
+	      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	      
+
+	 <!-- <script>
+        function submitRequest() {
+            // Assuming bloodRequestStatus is a variable containing the text you want to display
+            var bloodRequestStatus ="${bloodRequestStatus}";
+            
+            // Check if bloodRequestStatus is not empty or undefined
+            if (bloodRequestStatus) {
+                // Get the text content of the span element
+                var spanText = $('.error-attribute').text();
+
+                // Display the text in an alert
+                alert(spanText);
+            }
+        }
+    </script>-->
+    
+<!-- Include jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    // Get the text content of the span element
+    var bloodRequestStatus = $(".error-attribute").text();
+
+    // Check if the content is not empty
+    if (bloodRequestStatus.trim() !== "") {
+      // Display the content using a jQuery alert
+      alert(bloodRequestStatus);
+    }
+  });
+</script>
+
+
+
+
+
 </body>
 
 </html>
