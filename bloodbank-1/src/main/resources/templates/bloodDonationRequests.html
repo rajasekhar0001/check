@@ -131,6 +131,12 @@
                                 <span class="hide-menu">Blood Expiry Details</span>
                             </a>
                         </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/viewUserDetails" aria-expanded="false">
+                                <i class="fa fa-table" aria-hidden="true"></i>
+                                <span class="hide-menu">User Details</span>
+                            </a>
+                        </li>
                          <li class="text-center p-20 signout-btn">
                                                       <a href="logout" class="btn d-grid btn-danger text-white" > Sign out</a>
 
@@ -166,12 +172,21 @@
                                             <th class="border-top-0">Blood Group</th>
                                             <th class="border-top-0">No.of Units</th>
                                             <th class="border-top-0">Date of Donation</th>
+                                            <th class="border-top-0">Status</th>
                                             <th class="border-top-0">Action</th>
                                         </tr>
                                     
                                 </thead>
                                 <tbody id="donationRequestsTableBody">
                                     <!-- Use Thymeleaf to iterate over the list of donorData from the controller -->
+<<<<<<< HEAD
+=======
+
+
+
+<!-- 
+
+>>>>>>> dd68624b432c75e3ea8ac1410c5502e9a7a117dc
                                     <tr th:each="donor, rowStat : ${donor}">
                                         <td th:text="${rowStat.index + 1}"></td>
                                         <td th:text="${donor.firstname}"></td>
@@ -179,7 +194,7 @@
                                         <td th:text="${donor.email}"></td>
                                         <td th:text="${donor.bloodGroup}"></td>
                                         <td th:text="${donor.units}"></td>
-                                        <td th:text="${donor.dateOfDonation}"></td>         
+                                        <td th:text="${donor.dateOfDonation}"></td>    -->      
                                         <!-- ... (existing HTML code) ... -->
 										<td class="action-cell">
 
@@ -199,6 +214,12 @@
     </td>-->
     <td class="action-cell">
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> dd68624b432c75e3ea8ac1410c5502e9a7a117dc
                 <!--<button class="btn btn-success btn-accept"  th:data-onclick="'accept(\'' + ${donor.email} + '\')'">Accept</button>-->
                 <button class="btn btn-success btn-accept" th:attr="onclick='accept(\'' + ${donor.email} + '\')'">Accept</button>
                 <button class="btn btn-danger btn-reject"th:attr="onclick='reject(\'' + ${donor.email} + '\')'">Reject</button>
@@ -209,9 +230,20 @@
               
                                     </tr>
 
+<<<<<<< HEAD
 </tr>
                                     <!-- ... (your existing table body) ... -->
 
+=======
+
+</tr>
+                                    <!-- ... (your existing table body) ... -->
+
+
+</tr>
+ 
+
+>>>>>>> dd68624b432c75e3ea8ac1410c5502e9a7a117dc
                                 </tbody>
                             </table>
                         </div>
@@ -363,7 +395,12 @@ function addTableRow(firstName, lastName, email, bloodGroup, units, date, status
         });
     </script>
 
+<<<<<<< HEAD
     </script>
+=======
+
+    </script>-->
+>>>>>>> dd68624b432c75e3ea8ac1410c5502e9a7a117dc
     
     <script>
 $(document).ready(function () {
@@ -382,7 +419,11 @@ $(document).ready(function () {
 });
 </script>
     
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> dd68624b432c75e3ea8ac1410c5502e9a7a117dc
     </body>
 
     </html>

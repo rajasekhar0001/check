@@ -56,7 +56,7 @@ public class DonorDetailsService {
             String donationDate = donorlist.getDateOfDonation();
             long days = findDifference(donationDate, todayDate);
 
-            if (days > 90) {
+            if (days > 10) {
                 String id = donorlist.getEmail();
                 System.out.println(id);
                 //repo.deleteByBloodId(id);
