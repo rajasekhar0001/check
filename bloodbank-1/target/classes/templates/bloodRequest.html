@@ -218,9 +218,11 @@
                 <span class="form-label">Reason for Request</span>
                 <textarea id="reason" name="reason" rows="4" required></textarea>
             </div>
-			<span style="color: white;" id="bloodRequestStatusSpan" class ="error-attribute" th:if="${bloodRequestStatus}"  th:text="${bloodRequestStatus}"></span>						
+			<span style="display: none;" id="bloodRequestStatusSpan" class ="error-attribute" th:if="${bloodRequestStatus}"  th:text="${bloodRequestStatus}"></span>						
         
            <div class="form-btn">
+			   									<a href="/userHome" class="submit-btn">Go Home</a>                        
+
 									<button class="submit-btn" type="submit" onclick="submitRequest()">Submit</button>
 								</div>
         </div>
@@ -288,7 +290,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <span class="form-label">Date of Blood Request</span>
+                                                        <span class="form-label">Date</span>
                                                         <input class="form-control" type="date" name="dateOfBlood" required>
                                                     </div>
                                                 </div>
@@ -304,13 +306,15 @@
                                                 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <span class="form-label">Reason for Blood Request</span>
+                                                        <span class="form-label">Reason</span>
                                                         <textarea class="form-control" name="reason" rows="4" required></textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                             
                                             <div class="form-btn">
+											<a href="/userHome" class="submit-btn">Go Home</a>                        
+
 									<button class="submit-btn" type="submit" >Submit</button>
 								</div>
 								</form>

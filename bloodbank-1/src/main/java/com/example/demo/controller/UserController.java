@@ -198,12 +198,7 @@ public class UserController {
 	
 	@PostMapping("/bloodDonationRequest")//1
 	public String donateRequest(@ModelAttribute("received") DonorDetails received,HttpSession session, Model model) {
-//		if (session.getAttribute("userEmail") == null) {
-//            // Session is valid, return the Thymeleaf template name for the user home page
-//            return "userLogin";
-//        } 
-//		System.out.println("donation request");
-//		System.out.println(received.getDateOfDonation() + " " + received.getCity());
+//		
 		if (loginService.validateUserDetails(received))
 		{
 			model.addAttribute("donateMessage", "Fill profile details before going for donation");
@@ -229,7 +224,7 @@ public class UserController {
 			
 		}
 		System.out.println("donation request  "  + "  " + received.getEmail() + " " +  " " + received.getDateOfDonation());
-		return "userHome";
+		return "donationRequest";
 	}
 	
 	@PostMapping("/bloodRequestSelf")  //1

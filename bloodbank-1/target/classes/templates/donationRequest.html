@@ -215,10 +215,11 @@
           									  <option value="14:00-15:00">5:00 PM - 6:00 PM</option>
        									 </select>
 </div>
-								<span class ="error-attribute" th:if="${donateMessage}"  th:text="${donateMessage}"></span>
+								<span style="display: none;" id="donateMessageSpan" class ="error-attribute" th:if="${donateMessage}"  th:text="${donateMessage}"></span>
 								</div><br>
 				
 								<div class="form-btn">
+									<a href="/userHome" class="submit-btn">Go Home</a>                        
 									<button class="submit-btn" type="submit" >Submit</button>
 								</div>
 							</form>
@@ -236,6 +237,55 @@
 		  });
 		}
 	  </script> -->
+<!--<script>
+  $(document).ready(function () {
+    // Get the text content of the span element
+    var bloodRequestStatus = $(".error-attribute").text();
+
+    // Check if the content is not empty
+    if (bloodRequestStatus.trim() !== "") {
+      // Display the content using a jQuery alert
+      alert(bloodRequestStatus);
+    }
+  });
+</script>-->
+
+
+<!--<script>
+    // Wait for the document to be ready
+    $(document).ready(function() {
+        // Make an AJAX request to get the message from the backend
+        $.ajax({
+            type: 'GET',
+            url: '/bloodbank-1/src/main/resources/templates/donationRequest.html', // Replace with the actual endpoint
+            success: function(bloodRequestStatus) {
+                // Display the message in an alert
+                alert(bloodRequestStatus);
+
+                // You can also display the message in the messageContainer
+                // $('#messageContainer').text(data);
+            },
+            error: function() {
+                alert('Error retrieving the message from the backend');
+            }
+        });
+    });
+</script>-->
+
+<script>
+    // Wait for the document to be ready
+    $(document).ready(function() {
+        // Get the text content of the hidden span element
+        var donateMessage = $('#donateMessageSpan').text();
+        
+        // Check if the donateMessage is not empty
+        if(donateMessage.trim() !== '') {
+            // Display the message in an alert
+            alert(donateMessage);
+        }
+    });
+</script>
+
 </body>
 
 </html>

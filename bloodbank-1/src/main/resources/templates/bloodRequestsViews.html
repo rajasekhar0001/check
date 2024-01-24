@@ -125,9 +125,8 @@
                             </a>
                         </li>
                          <li class="text-center p-20 signout-btn">
-                            <a href="/userLogin"
-                                class="btn d-grid btn-danger text-white" target="_blank">
-                                Sign out</a>
+                                                        <a href="logout" class="btn d-grid btn-danger text-white" > Sign out</a>
+
                         </li>
                     </ul>
                 </nav>
@@ -214,22 +213,7 @@
         <!-- Include Bootstrap JS -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
         
-        <script>
-    function search() {
-        let input = document.getElementById('searchInput').value.toLowerCase();
-        let rows = document.querySelectorAll('#donationRequestsTableBody tr');
-
-        rows.forEach(row => {
-            let emailCell = row.querySelector('.email'); // Assuming you have a class named 'email' for the email cell
-
-            if (emailCell && emailCell.textContent.toLowerCase().includes(input)) {
-                row.style.display = "table-row";
-            } else {
-                row.style.display = "none";
-            }
-        });
-    }
-</script>
+   
 
 <!-- DataTables JavaScript -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
