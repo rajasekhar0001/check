@@ -50,42 +50,14 @@ public class InventoryService {
 			return repo.save(detail);
 		}
 	
-//	public List<Inventory> getInventoryDetailsByBloodGroup(String BloodGroup) {
-//		return repo.findByBloodGroup(BloodGroup);
-//	}
-	 
-//	 public Map<String, Long> getInventoryDetailsByBloodGroup() {
-//	        return repo.getCountByBloodGroup();
-//	    }
-//	 
-	 
+
 	 
 	 
 	public List<Inventory> findByBloodGroup(String bloodGroup) {
         return repo.findByBloodGroup(bloodGroup);
 	}
-	
-	 
 
-	    public Map<String, Long> getCountByBloodGroup(String bloodGroup) {
-	        List<Inventory> inventoryList = findByBloodGroup(bloodGroup);
 
-	        // Count occurrences of each blood group in the list
-	        return inventoryList.stream().collect(Collectors.groupingBy(Inventory::getBloodGroup, Collectors.counting()));
-	    }
-	
-
-//    public List<Inventory> findQuantityByBloodGroup() {
-//    	
-//    	
-//    	
-//        return repo.findQuantityByBloodGroup();
-//    }
-	
-//	 public List<Object[]> findQuantityByBloodGroup() {
-//	        return repo.findDistinctBloodGroupAndSumQuantityBy();
-//	    }
-    
     @Transactional
     public List<Inventory> checkForOldBloodSamples(List<Inventory> donors) {
         List<Inventory> deletedItems = new ArrayList<>();
@@ -139,29 +111,6 @@ public class InventoryService {
         return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
     }
 
-//	public List<Inventory> checkForOldBloodSamples(List<Inventory> donors) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-    
-    
-    public Map<String, Integer> findQuantityByBloodGroup() {
-        List<Inventory> inventories = repo.findAll();
-
-        // Use a Map to store the count of each blood group
-        Map<String, Integer> bloodGroupCount = new HashMap<>();
-
-        // Iterate through the inventories and count the quantity for each blood group
-        for (Inventory inventory : inventories) {
-            String bloodGroup = inventory.getBloodGroup();
-            int quantity = inventory.getQuantity();
-
-            // Update the count for the blood group
-            bloodGroupCount.put(bloodGroup, bloodGroupCount.getOrDefault(bloodGroup, 0) + quantity);
-        }
-
-        return bloodGroupCount;
-    }
 
 	public int getBloodCount(String string) {
 		// TODO Auto-generated method stub
@@ -172,6 +121,63 @@ public class InventoryService {
 		}
 		return count;
 	}
+	
+	
+//	public Map<String, Long> getCountByBloodGroup(String bloodGroup) {
+//    List<Inventory> inventoryList = findByBloodGroup(bloodGroup);
+//
+//    // Count occurrences of each blood group in the list
+//    return inventoryList.stream().collect(Collectors.groupingBy(Inventory::getBloodGroup, Collectors.counting()));
+//}
+
+	
+//	public List<Inventory> checkForOldBloodSamples(List<Inventory> donors) {
+//	// TODO Auto-generated method stub
+//	return null;
+//}
+
+
+//public Map<String, Integer> findQuantityByBloodGroup() {
+//    List<Inventory> inventories = repo.findAll();
+//
+//    // Use a Map to store the count of each blood group
+//    Map<String, Integer> bloodGroupCount = new HashMap<>();
+//
+//    // Iterate through the inventories and count the quantity for each blood group
+//    for (Inventory inventory : inventories) {
+//        String bloodGroup = inventory.getBloodGroup();
+//        int quantity = inventory.getQuantity();
+//
+//        // Update the count for the blood group
+//        bloodGroupCount.put(bloodGroup, bloodGroupCount.getOrDefault(bloodGroup, 0) + quantity);
+//    }
+//
+//    return bloodGroupCount;
+//}
+
+	
+	
+	
+//	public List<Inventory> getInventoryDetailsByBloodGroup(String BloodGroup) {
+//	return repo.findByBloodGroup(BloodGroup);
+//}
+// 
+// public Map<String, Long> getInventoryDetailsByBloodGroup() {
+//        return repo.getCountByBloodGroup();
+//    }
+// 
+ 
+//  public List<Inventory> findQuantityByBloodGroup() {
+//	
+//	
+//	
+//    return repo.findQuantityByBloodGroup();
+//}
+
+// public List<Object[]> findQuantityByBloodGroup() {
+//        return repo.findDistinctBloodGroupAndSumQuantityBy();
+//    }
+
     
 
 }

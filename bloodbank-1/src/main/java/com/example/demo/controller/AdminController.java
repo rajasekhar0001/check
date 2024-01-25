@@ -187,10 +187,10 @@ public class AdminController {
      
       }
   
-  @GetMapping("/getCountByBloodGroup/{bloodGroup}")
-  public Map<String, Long> getCountByBloodGroup(@PathVariable String bloodGroup) {
-      return inventoryService.getCountByBloodGroup(bloodGroup);
-  }
+//  @GetMapping("/getCountByBloodGroup/{bloodGroup}")
+//  public Map<String, Long> getCountByBloodGroup(@PathVariable String bloodGroup) {
+//      return inventoryService.getCountByBloodGroup(bloodGroup);
+//  }
  
   @GetMapping("/getDonorDetails")
   public List<DonorDetails> getDonorDetails(){

@@ -107,9 +107,14 @@ public class DonorDetailsService {
 		return repo.save(detail);
 	}
 	 
+//	 public List<DonorDetails> getDonorDetailsByEmailAndStatus(String email, byte status) {
+//		 return repo.findByEmailAndStatus(email, status);
+//	 }
+//	 
 	 public List<DonorDetails> getDonorDetailsByEmailAndStatus(String email, byte status) {
-		 return repo.findByEmailAndStatus(email, status);
-	 }
+		    return repo.findByEmailAndStatus(email, status);
+		}
+
 	 
 //	 public DonorDetails saveDetails(DonorDetails detail) {
 //		 return inventoryrepo.updateStatus(detail);
@@ -135,27 +140,27 @@ public class DonorDetailsService {
 	 
 	 
 	
-	public List<DonorDetails> acceptDonationRequest(){
-		List<DonorDetails> saved= getDonordetailsByStatus((byte) 0);
-		List<DonorDetails> donors = new ArrayList<>();
-		for (DonorDetails detail: saved) {
-			if(detail.getStatus()==0) {
-				donors.add(detail);
-				//saveDonorDetails(detail);
-				
-				//detail.setStatus();
-				updateStatus(detail);
-//				Inventory inventory = convertDonorDetailsToInventory(detail);
-//				inventoryrepo.updateStatus(inventory);
-				
-				
-			}
-		}
-		
-		return donors;
-		
-		
-	}
+//	public List<DonorDetails> acceptDonationRequest(){
+//		List<DonorDetails> saved= getDonordetailsByStatus((byte) 0);
+//		List<DonorDetails> donors = new ArrayList<>();
+//		for (DonorDetails detail: saved) {
+//			if(detail.getStatus()==0) {
+//				donors.add(detail);
+//				//saveDonorDetails(detail);
+//				
+//				//detail.setStatus();
+//				updateStatus(detail);
+////				Inventory inventory = convertDonorDetailsToInventory(detail);
+////				inventoryrepo.updateStatus(inventory);
+//				
+//				
+//			}
+//		}
+//		
+//		return donors;
+//		
+//		
+//	}
 	
 
     

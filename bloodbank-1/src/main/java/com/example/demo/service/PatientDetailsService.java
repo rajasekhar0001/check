@@ -67,23 +67,7 @@ public class PatientDetailsService {
 			return repo.save(detail);
 		}
 	
-	public List<PatientDetails> acceptBloodRequest(){
-		List<PatientDetails> saved= getPatientDetailsByStatus((byte) 0);
-		List<PatientDetails> donors = new ArrayList<>();
-		for (PatientDetails detail: saved) {
-			if(detail.getStatus()==0) {
-				donors.add(detail);
-				detail.setStatus((byte) 1);
-				updateStatus(detail);
-			
-		}
-		
-	}
-		return donors;
-	
-	
-	
-}
+
 	
 	
 	public List<PatientDetails> getBloodRequestsHistory(){
@@ -98,4 +82,24 @@ public class PatientDetailsService {
 		// TODO Auto-generated method stub
 		return repo.findByStatus((byte) 1);
 	}
+	
+	
+	
+//	public List<PatientDetails> acceptBloodRequest(){
+//		List<PatientDetails> saved= getPatientDetailsByStatus((byte) 0);
+//		List<PatientDetails> donors = new ArrayList<>();
+//		for (PatientDetails detail: saved) {
+//			if(detail.getStatus()==0) {
+//				donors.add(detail);
+//				detail.setStatus((byte) 1);
+//				updateStatus(detail);
+//			
+//		}
+//		
+//	}
+//		return donors;
+//	
+//	
+//	
+//}
 }
