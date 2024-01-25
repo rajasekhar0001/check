@@ -12,12 +12,18 @@ import com.example.demo.entity.RegistrationDetails;
 public class CustomUserDetail implements UserDetails {
 	
 	private static final long serialVersionUID = 1L;
+	
 	private RegistrationDetails user;
 	
 	public CustomUserDetail(RegistrationDetails user) {
 		this.user = user;
 	}
 	
+
+	public CustomUserDetail() {
+		// TODO Auto-generated constructor stub
+	}
+
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -43,6 +49,12 @@ public class CustomUserDetail implements UserDetails {
 	public String getEmail() {
 		// TODO Auto-generated method stub
 		return user.getEmail();
+	}
+	
+	public void setEmail(String email) {
+		 if (user != null) {
+	            user.setEmail(email);
+	        }
 	}
 
 	

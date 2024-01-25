@@ -28,6 +28,7 @@ public class RegistrationDetails {
 	private String bloodGroup;
 	private int otp;
 	
+	
 	public int getOtp() {
 		return otp;
 	}
