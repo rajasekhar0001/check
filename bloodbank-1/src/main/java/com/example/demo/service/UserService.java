@@ -429,15 +429,5 @@ public class UserService {
 
 
 
-//	public int getBloodRequestsCount(String email) {
-//		// TODO Auto-generated method stub
-//		
-//		return 0;
-//	}
-//
-//	public int getDonationCount(String email) {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
 
 	}
