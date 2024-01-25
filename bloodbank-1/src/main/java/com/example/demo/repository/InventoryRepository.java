@@ -22,9 +22,11 @@ public interface InventoryRepository extends JpaRepository<Inventory, Integer> {
 	   //public List<Object[]> findQuantityByBloodGroup();
 //	 @Query(value = "SELECT blood_group, SUM(quantity) FROM blood_inventory GROUP BY blood_group", nativeQuery = true)
 //	    List<Inventory> findQuantityByBloodGroup();
-	 @Query("SELECT bloodGroup, COUNT(bloodId) FROM Inventory GROUP BY bloodGroup")
 	 
-	    public Map<String, Long> getCountByBloodGroup();
+	 
+//	 @Query("SELECT bloodGroup, COUNT(bloodId) FROM Inventory GROUP BY bloodGroup")
+//	 
+//	    public Map<String, Long> getCountByBloodGroup();
 	
 	 
 	//public List<Object[]> findDistinctBloodGroupAndSumQuantityBy();
