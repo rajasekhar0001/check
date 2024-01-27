@@ -42,7 +42,7 @@ public class RegistrationDetailsController {
 				ele.setPassword(detail.getPassword());
 				ele.setRole("USER");
 				service.saveRegistrationDetails(ele);
-				return "redirect:/registrationStatus";
+				return "registrationStatus";
 			}
 			
 		}

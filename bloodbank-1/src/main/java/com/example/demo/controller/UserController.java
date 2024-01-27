@@ -76,34 +76,34 @@ public class UserController {
 //	}
 	
 	
-	@GetMapping("/viewProfileDetail")
-	public String viewProfileDetail(HttpSession session, Model model) {
-	    // Retrieve the email from the session
-	   // String adminEmail = (String) session.getAttribute("loggedInUserEmail");
-	    CustomUserDetail user = (CustomUserDetail) session.getAttribute("user");
-	    String email = user.getEmail();
-	    
-	    System.out.println(email);
-
-	    if (email == null) {
-	        // Handle the case where the admin is not logged in
-	        return "redirect:/adminLogin";  // Redirect to the admin login page or handle appropriately
-	    }
-
-	    // Add logic to fetch user details based on the admin's email
-	    List<RegistrationDetails> userDetails = loginService.getProfileDetails(email);
-	    for(RegistrationDetails a:userDetails) {
-	    	System.out.println(a.getBloodGroup());
-	    	System.out.println(a.getCity());
-	    	System.out.println(a.getFirstname());
-	    }
-
-	    // Add the user details to the model
-	    model.addAttribute("user", userDetails);
-
-	    // Return the Thymeleaf template name
-	    return "userProfile";
-	}
+//	@GetMapping("/viewProfileDetail")
+//	public String viewProfileDetail(HttpSession session, Model model) {
+//	    // Retrieve the email from the session
+//	   // String adminEmail = (String) session.getAttribute("loggedInUserEmail");
+//	    CustomUserDetail user = (CustomUserDetail) session.getAttribute("user");
+//	    String email = user.getEmail();
+//	    
+//	    System.out.println(email);
+//
+//	    if (email == null) {
+//	        // Handle the case where the admin is not logged in
+//	        return "redirect:/adminLogin";  // Redirect to the admin login page or handle appropriately
+//	    }
+//
+//	    // Add logic to fetch user details based on the admin's email
+//	    List<RegistrationDetails> userDetails = loginService.getProfileDetails(email);
+//	    for(RegistrationDetails a:userDetails) {
+//	    	System.out.println(a.getBloodGroup());
+//	    	System.out.println(a.getCity());
+//	    	System.out.println(a.getFirstname());
+//	    }
+//
+//	    // Add the user details to the model
+//	    model.addAttribute("user", userDetails);
+//
+//	    // Return the Thymeleaf template name
+//	    return "userProfile";
+//	}
 	
 	
 	

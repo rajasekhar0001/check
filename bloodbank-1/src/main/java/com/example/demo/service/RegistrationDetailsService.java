@@ -51,6 +51,7 @@ public class RegistrationDetailsService {
 	public List<RegistrationDetails> getRegistrationDetailsByEmail(String email) {
 		return repo.findAllByEmail(email);
 	}
+	
 
 
 	public List<RegistrationDetails> getRegistrationDetailsByRole(String role) {
