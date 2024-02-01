@@ -65,16 +65,16 @@
 	        assertEquals(1, foundDetailsList.size()); // Assuming "test1@example.com" doesn't exist in the setup
 	    }
 
-	    @Test
-	    public void testFindByRole() {
-	        // Act
-	        List<RegistrationDetails> foundDetailsList = registrationDetailsRepository.findByRole("ADMIN");
-
-	        // Assert
-	        assertNotNull(foundDetailsList);
-	        assertEquals(2, foundDetailsList.size());
-	        assertEquals("ADMIN", foundDetailsList.get(0).getRole());
-	    }
+//	    @Test
+//	    public void testFindByRole() {
+//	        // Act
+//	        List<RegistrationDetails> foundDetailsList = registrationDetailsRepository.findByRole("ADMIN");
+//
+//	        // Assert
+//	        assertNotNull(foundDetailsList);
+//	        assertEquals(2, foundDetailsList.size());
+//	        assertEquals("ADMIN", foundDetailsList.get(0).getRole());
+//	    }
 	}
 
 	

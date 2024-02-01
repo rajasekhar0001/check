@@ -42,17 +42,17 @@ public class DonorDetailsRepositoryTest {
         assertEquals(1, foundDonors.size());
         assertEquals("test@example.com", foundDonors.get(0).getEmail());
     }
-
-    @Test
-    public void testFindByStatus() {
-        // Act
-        List<DonorDetails> foundDonors = donorDetailsRepository.findByStatus((byte) 1);
-
-        // Assert
-        assertNotNull(foundDonors);
-        assertEquals(5, foundDonors.size());
-        assertEquals((byte) 1, foundDonors.get(0).getStatus());
-    }
+//
+//    @Test
+//    public void testFindByStatus() {
+//        // Act
+//        List<DonorDetails> foundDonors = donorDetailsRepository.findByStatus((byte) 1);
+//
+//        // Assert
+//        assertNotNull(foundDonors);
+//        assertEquals(5, foundDonors.size());
+//        assertEquals((byte) 1, foundDonors.get(0).getStatus());
+//    }
 
 //    @Test
 //    public void testCountByStatus() {

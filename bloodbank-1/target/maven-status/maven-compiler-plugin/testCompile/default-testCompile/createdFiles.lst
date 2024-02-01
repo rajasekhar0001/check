@@ -1,0 +1,13 @@
+com\example\demo\service\InventoryServiceTest.class
+com\example\demo\controller\AdminControllerTest.class
+com\example\demo\controller\UserControllerTest.class
+com\example\demo\repository\RegistrationDetailsRepositoryTest.class
+com\example\demo\service\PatientDetailsServiceTest.class
+com\example\demo\repository\InventoryRepositoryTest.class
+com\example\demo\service\RegistrationDetailsServiceTest.class
+com\example\demo\controller\PatientDetailsControllerTest.class
+com\example\demo\controller\RegistrationDetailsControllerTest.class
+com\example\demo\Bloodbank1ApplicationTests.class
+com\example\demo\repository\DonorDetailsRepositoryTest.class
+com\example\demo\repository\PatientDetailsRepositoryTest.class
+com\example\demo\service\DonorDetailsServiceTest.class

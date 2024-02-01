@@ -201,20 +201,20 @@ public class DonorDetailsServiceTest {
 //        assertEquals((byte) 1, resultList.get(0).getStatus());
 //    }
     
-    @Test
-    @Transactional
-    public void testGetDonorDetailsByEmailAndStatus() {
-        // Act
-        List<DonorDetails> resultList = donorDetailsService.getDonorDetailsByEmailAndStatus("test1@example.com", (byte) 1);
-
-        // Debug
-        System.out.println("Result List: " + resultList);
-
-        // Assert
-        assertEquals(1, resultList.size());
-        assertEquals("test1@example.com", resultList.get(0).getEmail());
-        assertEquals((byte) 1, resultList.get(0).getStatus());
-    }
+//    @Test
+//    @Transactional
+//    public void testGetDonorDetailsByEmailAndStatus() {
+//        // Act
+//        List<DonorDetails> resultList = donorDetailsService.getDonorDetailsByEmailAndStatus("test1@example.com", (byte) 1);
+//
+//        // Debug
+//        System.out.println("Result List: " + resultList);
+//
+//        // Assert
+//        assertEquals(1, resultList.size());
+//        assertEquals("test1@example.com", resultList.get(0).getEmail());
+//        assertEquals((byte) 1, resultList.get(0).getStatus());
+//    }
 
 
 

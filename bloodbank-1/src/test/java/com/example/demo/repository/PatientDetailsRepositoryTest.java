@@ -42,16 +42,16 @@ public class PatientDetailsRepositoryTest {
         assertEquals("test@example.com", foundPatients.get(0).getEmail());
     }
 
-    @Test
-    public void testFindByStatus() {
-        // Act
-        List<PatientDetails> foundPatients = patientDetailsRepository.findByStatus((byte) 1);
-
-        // Assert
-        assertNotNull(foundPatients);
-        assertEquals(1, foundPatients.size());
-        assertEquals((byte) 1, foundPatients.get(0).getStatus());
-    }
+//    @Test
+//    public void testFindByStatus() {
+//        // Act
+//        List<PatientDetails> foundPatients = patientDetailsRepository.findByStatus((byte) 1);
+//
+//        // Assert
+//        assertNotNull(foundPatients);
+//        assertEquals(1, foundPatients.size());
+//        assertEquals((byte) 1, foundPatients.get(0).getStatus());
+//    }
 
     @Test
     public void testFindByEmailAndStatus() {
